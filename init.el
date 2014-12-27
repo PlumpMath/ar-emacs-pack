@@ -2,18 +2,22 @@
 ;; AR pack init file
 ;;
 
-;;; Files
+;;; No backups
 (setq make-backup-files nil) ; stop creating backup~ files
 (setq auto-save-default nil) ; stop creating #autosave# files
+;; (setq custom-file "~/.live-packs/ar-emacs-pack/custom-configuration.el")
 
+;;; Misc settings
 (setq cua-enable-cua-keys t)
 (setq mouse-drag-copy-region t)
+(setq mc/list-file "~/.live-packs/ar-emacs-pack/mc-lists.el")
+(setq visible-bell t)
 
 ;;; Tabs and indent
-(setq-default indent-tabs-mode nil
-              tab-width 4
-              fill-column 100
-              truncate-lines t)
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
+(setq-default fill-column 100)
+(setq-default truncate-lines t)
 
 (setq electric-indent-mode t)
 
@@ -38,9 +42,10 @@
     (((class color) (background light)) (:background "yellow" :foreground "yellow"))
     (t (:inverse-video t)))))
 
-;; Load bindings config
+;; Load bindings and configs
 (live-load-config-file "bindings.el")
+(live-load-config-file "phi-search-conf.el")
 
-;; Load libs
+;; Load libs with no config
 (require 'xcopypaste)
 (require 'misc)
