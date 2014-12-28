@@ -5,7 +5,7 @@
 ;;; No backups
 (setq make-backup-files nil) ; stop creating backup~ files
 (setq auto-save-default nil) ; stop creating #autosave# files
-;; (setq custom-file "~/.live-packs/ar-emacs-pack/custom-configuration.el")
+(setq custom-file "~/.live-packs/ar-emacs-pack/custom-configuration.el")
 
 ;;; Misc settings
 (setq live-disable-zone t)
@@ -46,6 +46,7 @@
 ;; Load bindings and configs
 (live-load-config-file "bindings.el")
 (live-load-config-file "phi-search-conf.el")
+(live-load-config-file "column-indicator-conf.el")
 ;; (live-load-config-file "themes.el")
 
 ;; Load libs with no config

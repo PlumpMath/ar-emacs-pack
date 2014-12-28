@@ -19,6 +19,7 @@
 (global-set-key (kbd "C-c x l") 'linum-mode)
 (global-set-key (kbd "C-c x g") 'git-gutter-mode)
 (global-set-key (kbd "C-c x p") 'paredit-mode)
+(global-set-key (kbd "C-c x f") 'global-fci-mode-custom)
 
 ;;; C-c r custom group for clj-refactor
 (cljr-add-keybindings-with-prefix "C-c r")
