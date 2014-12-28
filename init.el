@@ -8,6 +8,7 @@
 ;; (setq custom-file "~/.live-packs/ar-emacs-pack/custom-configuration.el")
 
 ;;; Misc settings
+(setq live-disable-zone t)
 (setq cua-enable-cua-keys t)
 (setq mouse-drag-copy-region t)
 (setq mc/list-file "~/.live-packs/ar-emacs-pack/mc-lists.el")
@@ -45,6 +46,7 @@
 ;; Load bindings and configs
 (live-load-config-file "bindings.el")
 (live-load-config-file "phi-search-conf.el")
+;; (live-load-config-file "themes.el")
 
 ;; Load libs with no config
 (require 'xcopypaste)

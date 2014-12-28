@@ -27,7 +27,7 @@
 (global-set-key (kbd "<C-S-mouse-1>") 'mc/add-cursor-on-click) ; works just in a X window
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c C-a") 'mc/mark-all-like-this)
+(global-set-key (kbd "C-c C-a") 'mc/mark-all-dwim)
 (global-set-key (kbd "M-/") 'narrow-or-widen-dwim)
 
 ;;; My redefinitions of some Emacs Live bindings
