@@ -14,6 +14,14 @@
 (global-set-key (kbd "C-v") 'cua-paste)
 (global-set-key (kbd "C-w") 'er/expand-region)
 
+;; Auto completion
+(ac-set-trigger-key "TAB")
+(define-key ac-menu-map (kbd "C-n") 'ac-next)
+(define-key ac-menu-map (kbd "C-p") 'ac-previous)
+(global-set-key (kbd "<backtab>") 'auto-complete)
+(define-key ac-complete-mode-map "\r" 'ac-complete)
+(define-key ac-complete-mode-map "t" 'ac-expand)
+
 ;;; C-c x custom group for enabling modes
 (global-set-key (kbd "C-c x w") 'whitespace-mode)
 (global-set-key (kbd "C-c x l") 'linum-mode)
@@ -30,6 +38,7 @@
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-a") 'mc/mark-all-dwim)
 (global-set-key (kbd "M-/") 'narrow-or-widen-dwim)
+(global-set-key "\033[32;16~" 'set-rectangular-region-anchor)
 
 ;;; My redefinitions of some Emacs Live bindings
 (global-set-key (kbd "C-h") 'help-command)
@@ -40,5 +49,5 @@
 
 (global-set-key (kbd "C-x C-M-c") 'save-buffers-kill-emacs)
 
-;; (kbd s-SPC)
-(global-set-key "\033[32;16~" 'set-rectangular-region-anchor)
+;; My diff shortcuts
+(global-set-key (kbd "C-c d s") 'magit-diff-staged)

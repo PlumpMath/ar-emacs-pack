@@ -7,7 +7,7 @@
 (setq auto-save-default nil) ; stop creating #autosave# files
 (setq custom-file "~/.live-packs/ar-emacs-pack/custom-configuration.el")
 
-;;; Misc settings
+;;; Misc
 (setq live-disable-zone t)
 (setq cua-enable-cua-keys t)
 (setq mouse-drag-copy-region t)
@@ -19,8 +19,10 @@
 (setq-default tab-width 4)
 (setq-default fill-column 100)
 (setq-default truncate-lines t)
-
 (setq electric-indent-mode t)
+(setq ac-auto-start 3)
+(setq ac-auto-show-menu 0.8)
+(setq ac-ignore-case 'smart)
 
 ;;; Colors
 ;; http://stackoverflow.com/questions/7874548/emacs-23-3-1-whitespace-style
