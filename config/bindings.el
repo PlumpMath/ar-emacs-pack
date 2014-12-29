@@ -14,7 +14,7 @@
 (global-set-key (kbd "C-v") 'cua-paste)
 (global-set-key (kbd "C-w") 'er/expand-region)
 
-;; Auto completion
+;; My auto-complete-mode
 (ac-set-trigger-key "TAB")
 (define-key ac-menu-map (kbd "C-n") 'ac-next)
 (define-key ac-menu-map (kbd "C-p") 'ac-previous)
@@ -32,13 +32,18 @@
 ;;; C-c r custom group for clj-refactor
 (cljr-add-keybindings-with-prefix "C-c r")
 
-;;; multiple-cursors
+;;; My multiple-cursors.el
 (global-set-key (kbd "<C-S-mouse-1>") 'mc/add-cursor-on-click) ; works just in a X window
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-a") 'mc/mark-all-dwim)
 (global-set-key (kbd "M-/") 'narrow-or-widen-dwim)
 (global-set-key "\033[32;16~" 'set-rectangular-region-anchor)
+
+;;; My phi-search
+(global-set-key (kbd "C-s") 'phi-search)
+(global-set-key (kbd "C-r") 'phi-search-backward)
+(global-set-key (kbd "M-%") 'phi-replace-query)
 
 ;;; My redefinitions of some Emacs Live bindings
 (global-set-key (kbd "C-h") 'help-command)

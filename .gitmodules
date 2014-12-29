@@ -1,0 +1,6 @@
+[submodule "lib/phi-search"]
+	path = lib/phi-search
+	url = git@github.com:zk-phi/phi-search.git
+[submodule "lib/multiple-cursors.el"]
+	path = lib/multiple-cursors.el
+	url = git@github.com:magnars/multiple-cursors.el.git
