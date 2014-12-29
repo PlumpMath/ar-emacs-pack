@@ -1,3 +1,4 @@
+(live-add-pack-lib "Fill-Column-Indicator")
 (require 'fill-column-indicator)
 
 (define-globalized-minor-mode global-fci-mode-custom fci-mode turn-on-fci-mode)

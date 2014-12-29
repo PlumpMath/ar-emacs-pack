@@ -4,3 +4,6 @@
 [submodule "lib/multiple-cursors.el"]
 	path = lib/multiple-cursors.el
 	url = git@github.com:magnars/multiple-cursors.el.git
+[submodule "lib/Fill-Column-Indicator"]
+	path = lib/Fill-Column-Indicator
+	url = git@github.com:alpaker/Fill-Column-Indicator.git
