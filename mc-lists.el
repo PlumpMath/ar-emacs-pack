@@ -3,9 +3,12 @@
 
 (setq mc/cmds-to-run-for-all
       '(
-        reindent-then-newline-and-indent
+        cua-paste
+        keyboard-quit
         ))
 
 (setq mc/cmds-to-run-once
       '(
+        cua--prefix-override-handler
+        set-rectangular-region-anchor
         ))
