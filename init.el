@@ -45,10 +45,21 @@
     (((class color) (background light)) (:background "yellow" :foreground "yellow"))
     (t (:inverse-video t)))))
 
+;; git-gutter and linum
+(git-gutter:linum-setup)
+
+;; yasnippet + clojure
+
+(add-hook 'clojure-mode-hook
+          (lambda ()
+            (yas/minor-mode 1)))
+
 ;; Load bindings and configs
 (live-load-config-file "bindings.el")
 (live-load-config-file "phi-search-conf.el")
 (live-load-config-file "column-indicator-conf.el")
+(live-load-config-file "cider-conf.el")
+(live-load-config-file "clojure-snippets-conf.el")
 ;; (live-load-config-file "themes.el")
 
 ;; Load libs with no config
