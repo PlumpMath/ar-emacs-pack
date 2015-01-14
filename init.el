@@ -20,9 +20,8 @@
 (setq-default fill-column 100)
 (setq-default truncate-lines t)
 (setq electric-indent-mode t)
-(setq ac-auto-start 3)
+(setq ac-auto-start nil)
 (setq ac-auto-show-menu 0.8)
-(setq ac-ignore-case 'smart)
 
 ;;; Colors
 ;; http://stackoverflow.com/questions/7874548/emacs-23-3-1-whitespace-style
@@ -47,12 +46,14 @@
 
 ;; git-gutter and linum
 (git-gutter:linum-setup)
+(global-git-gutter-mode +1)
 
 ;; yasnippet + clojure
-
 (add-hook 'clojure-mode-hook
           (lambda ()
             (yas/minor-mode 1)))
+
+(add-hook 'clojure-mode-hook 'git-gutter-mode)
 
 ;; Load bindings and configs
 (live-load-config-file "bindings.el")
@@ -60,6 +61,7 @@
 (live-load-config-file "column-indicator-conf.el")
 (live-load-config-file "cider-conf.el")
 (live-load-config-file "clojure-snippets-conf.el")
+(live-load-config-file "projectile-conf.el")
 ;; (live-load-config-file "themes.el")
 
 ;; Load libs with no config

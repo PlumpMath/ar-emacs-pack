@@ -3,9 +3,9 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        cua-delete-region
         ))
 
 (setq mc/cmds-to-run-once
       '(
-        cua-exchange-point-and-mark
         ))

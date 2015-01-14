@@ -4,7 +4,7 @@
 
 ;; Define s-SPC, following:
 ;; http://emacs.stackexchange.com/questions/5705/use-super-in-emacs-nw-in-linux
-;; (define-key local-function-key-map "\033[32;16~" [(super ?\ )])
+;;(define-key local-function-key-map "\033[32;16~" [(super ?\ )])
 
 ;; Some Intellj Idea bindings
 (defalias 'redo 'undo-tree-redo)
@@ -48,6 +48,8 @@
 
 ;;; redefinitions of some Emacs Live bindings
 (global-set-key (kbd "C-h") 'help-command)
+(global-set-key (kbd "s-d") 'duplicate-line)
+(global-set-key "\033[32;64~" 'duplicate-line)
 (define-key org-mode-map (kbd "C-h") 'help-command)
 (define-key paredit-mode-map (kbd "C-h") 'help-command)
 (define-key undo-tree-map (kbd "C-_") 'comment-or-uncomment-region-or-line)

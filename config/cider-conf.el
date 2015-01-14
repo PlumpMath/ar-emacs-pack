@@ -4,7 +4,7 @@
 (setq cider-repl-history-size 1000)
 
 ;; Known hosts
-(setq cider-known-endpoints '(("localhost" "50505")))
+(setq cider-known-endpoints '(("ccw-local" "localhost" "5055")))
 
 (add-hook 'cider-repl-mode-hook #'subword-mode)
 
