@@ -53,7 +53,12 @@
           (lambda ()
             (yas/minor-mode 1)))
 
-(add-hook 'clojure-mode-hook 'git-gutter-mode)
+(add-hook 'clojure-mode-hook 'linum-mode)
+(add-hook 'emacs-lisp-mode-hook 'linum-mode)
+
+;; (add-hook 'linum-mode-hook
+;;           (lambda ()
+;;             (git-gutter:linum-setup)))
 
 ;; Load bindings and configs
 (live-load-config-file "bindings.el")

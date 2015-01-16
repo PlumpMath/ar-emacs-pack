@@ -6,12 +6,14 @@
 ;; http://emacs.stackexchange.com/questions/5705/use-super-in-emacs-nw-in-linux
 ;;(define-key local-function-key-map "\033[32;16~" [(super ?\ )])
 
-;; Some Intellj Idea bindings
 (defalias 'redo 'undo-tree-redo)
-(global-set-key (kbd "C-z") 'undo)
-(global-set-key (kbd "C-Z") 'redo)
-(global-set-key (kbd "C-y") 'kill-whole-line)
+(global-set-key (kbd "C-z") 'advanced-undo)
 (global-set-key (kbd "C-v") 'cua-paste)
+(global-set-key (kbd "C-c C-o") 'delete-blank-lines)
+(global-set-key (kbd "RET") 'advanced-return)
+
+; Some Intellj Idea bindings
+(global-set-key (kbd "C-y") 'kill-whole-line)
 (global-set-key (kbd "C-w") 'er/expand-region)
 
 ;; auto-complete-mode

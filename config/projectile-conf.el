@@ -8,6 +8,7 @@
 (require 'dash)
 (require 'projectile)
 
+(setq projectile-mode-line '(:eval (format " Proj[%s]" (projectile-project-name))))
 (setq projectile-enable-caching t)
 
 (projectile-global-mode)
