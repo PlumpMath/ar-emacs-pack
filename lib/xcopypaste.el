@@ -14,16 +14,19 @@
 (unless window-system
  (when (getenv "DISPLAY")
 
+  (defun xsel-primary () (call-process-region (point-min) (point-max) "xsel" nil 0 nil "--primary" "--input"))
+  (defun xsel-clipboard () (call-process-region (point-min) (point-max) "xsel" nil 0 nil "--clipboard" "--input"))
+
   ;; Callback for when user cuts
   (defun xsel-cut-function (text &optional push)
     ;; Insert text to temp-buffer, and "send" content to xsel stdin
-    (with-temp-buffer
-      (insert text)
-      ;; The text is pushed in both "primary" (the one the typically
-      ;; is used by c-c/c-v)  (that uses
-      ;; mouse-select/middle-button-click)
-      (call-process-region (point-min) (point-max) "xsel" nil 0 nil "--primary" "--input")
-      (call-process-region (point-min) (point-max) "xsel" nil 0 nil "--clipboard" "--input")))
+
+    (let ((primary-string (with-temp-buffer
+                            (insert text)
+                            ;; The text is pushed in both "primary" (the one the typically
+                            ;; is used by c-c/c-v)  (that uses
+                            ;; mouse-select/middle-button-click)
+                            (xsel-primary))))))
 
   ;; Call back for when user pastes
   (defun xsel-paste-function()
@@ -34,7 +37,7 @@
     (let ((xsel-output (shell-command-to-string "xsel --output")))
       (unless (or (string= "" xsel-output) (string= (car kill-ring) xsel-output))
         (shell-command "xsel --clear")
-        (message "xsel returned %s, returing and clearing it." xsel-output)
+        ;; (message "xsel returned %s, returing and clearing it." xsel-output)
         xsel-output)))
 
   ;; Attach callbacks to hooks

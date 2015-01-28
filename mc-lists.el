@@ -3,9 +3,15 @@
 
 (setq mc/cmds-to-run-for-all
       '(
-        cua-delete-region
+        cljr-slash
+        paredit-forward-barf-sexp
+        paredit-forward-delete
+        paredit-forward-slurp-sexp
+        paredit-open-round
         ))
 
 (setq mc/cmds-to-run-once
       '(
+        cider-repl-backward-input
+        phi-search
         ))

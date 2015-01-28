@@ -6,11 +6,21 @@
 ;; http://emacs.stackexchange.com/questions/5705/use-super-in-emacs-nw-in-linux
 ;;(define-key local-function-key-map "\033[32;16~" [(super ?\ )])
 
+;; Redefining redo/undo
 (defalias 'redo 'undo-tree-redo)
-(global-set-key (kbd "C-z") 'advanced-undo)
+(define-key clojure-mode-map (kbd "C-c C-z") nil)
+(define-key cider-mode-map (kbd "C-c C-z") nil)
+(global-set-key (kbd "C-z") 'undo-tree-undo)
+(global-set-key (kbd "C-c C-z") 'redo)
+
+;; Remove because bound by clojure already
+(define-key cider-mode-map (kbd "C-M-i") nil)
+
 (global-set-key (kbd "C-v") 'cua-paste)
 (global-set-key (kbd "C-c C-o") 'delete-blank-lines)
 (global-set-key (kbd "RET") 'advanced-return)
+(global-set-key (kbd "s-t") 'transpose-lines)
+(global-set-key "\033[32;74~" 'transpose-lines)
 
 ; Some Intellj Idea bindings
 (global-set-key (kbd "C-y") 'kill-whole-line)
@@ -24,24 +34,30 @@
 (define-key ac-complete-mode-map "\r" 'ac-complete)
 (define-key ac-complete-mode-map "t" 'ac-expand)
 
-;;; C-c x custom group for enabling modes
+;;; C-c x custom group for enabling stuff
 (global-set-key (kbd "C-c x w") 'whitespace-mode)
 (global-set-key (kbd "C-c x l") 'linum-mode)
 (global-set-key (kbd "C-c x g") 'git-gutter-mode)
-(global-set-key (kbd "C-c x p") 'paredit-mode)
+(global-set-key (kbd "C-c x p") 'cider-repl-use-pretty-printing)
 (global-set-key (kbd "C-c x f") 'global-fci-mode-custom)
 
 ;;; C-c r custom group for clj-refactor
 (cljr-add-keybindings-with-prefix "C-c r")
 
+;;; C-c w custom group for windows
+(global-set-key (kbd "C-c w t") 'toggle-window-split)
+
 ;;; multiple-cursors.el - goes in the C-c t prefix
 (global-set-key (kbd "<C-S-mouse-1>") 'mc/add-cursor-on-click) ; works just in a X window
 (global-set-key (kbd "<C-next>") 'mc/mark-next-like-this)
 (global-set-key (kbd "<C-prior>") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c t a") 'mc/mark-all-like-this-dwim)
 (global-set-key (kbd "M-/") 'narrow-or-widen-dwim)
 (global-set-key "\033[32;16~" 'set-rectangular-region-anchor)
 (global-set-key (kbd "s-SPC") 'set-rectangular-region-anchor)
+
+;; C-c t custom group emacs live - text shortcuts
+(global-set-key (kbd "C-c t a") 'mc/mark-all-like-this-dwim)
+(global-set-key (kbd "C-c t d l") 'duplicate-line)
 
 ;;; phi-search
 (global-set-key (kbd "C-s") 'phi-search)
@@ -50,12 +66,12 @@
 
 ;;; redefinitions of some Emacs Live bindings
 (global-set-key (kbd "C-h") 'help-command)
-(global-set-key (kbd "s-d") 'duplicate-line)
-(global-set-key "\033[32;64~" 'duplicate-line)
 (define-key org-mode-map (kbd "C-h") 'help-command)
 (define-key paredit-mode-map (kbd "C-h") 'help-command)
 (define-key undo-tree-map (kbd "C-_") 'comment-or-uncomment-region-or-line)
 (define-key undo-tree-map (kbd "C-/") 'comment-or-uncomment-region-or-line)
+(define-key paredit-mode-map (kbd "C-M-d") nil)
+(define-key clojure-mode-map (kbd "C-M-d") 'live-delete-whitespace-except-one)
 
 ;; gracefully kill emacs --daemon
 (global-set-key (kbd "C-x C-M-c") 'save-buffers-kill-emacs)

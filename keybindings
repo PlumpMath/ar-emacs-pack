@@ -1,0 +1,376 @@
+;; Default Emacs Live bindings
+
+
+;; C-c Groups
+;;
+;;e - eval and replace
+;;b - winner undo
+;;f - winner redo
+;;g - git gutter
+;;l - lispy shortcuts (i.e. paredit and clojure specific fns)
+;;m - emacs eval shortcuts
+;;t - text shortcuts
+;;i - utf8 char shortcuts
+;;j - quick-jump shortcuts
+;;d - diff shortcuts
+;;p - project shortcuts
+;;s - show popupwindows
+;;w - window and buffer shortcuts
+
+
+;; Should be able to eval-and-replace anywhere.
+(global-set-key (kbd "C-c e") 'eval-and-replace)
+
+;; winner undo and redo
+(global-set-key (kbd "C-c b") 'winner-undo)
+(global-set-key (kbd "C-c f") 'winner-redo)
+
+;; Git Gutter
+(global-set-key (kbd "C-c g g") 'git-gutter:toggle)
+
+;; Jump to next/previous diff
+(global-set-key (kbd "C-c g p") 'git-gutter:previous-diff)
+(global-set-key (kbd "C-c g n") 'git-gutter:next-diff)
+(global-set-key (kbd "C-c g d") 'git-gutter:popup-diff)
+(global-set-key (kbd "C-c g r") 'git-gutter:revert-hunk)
+
+;;text manipulation shortcuts
+(global-set-key (kbd "C-c t b") 'untabify-buffer)
+(global-set-key (kbd "C-c t r") 'untabify)
+
+;;emacs-lisp shortcuts
+(global-set-key (kbd "C-c m s") 'eval-and-replace) ;swap
+(global-set-key (kbd "C-c m b") 'eval-buffer)
+(global-set-key (kbd "C-c m e") 'eval-last-sexp)
+(global-set-key (kbd "C-c m i") 'eval-expression)
+(global-set-key (kbd "C-c m d") 'eval-defun)
+(global-set-key (kbd "C-c m n") 'eval-print-last-sexp)
+(global-set-key (kbd "C-c m r") 'eval-region)
+
+(global-set-key (kbd "C-c n e b") 'cider-eval-buffer)
+
+
+;;funky characters
+(global-set-key (kbd "C-c i l") (lambda () (interactive) (insert "λ")))
+(global-set-key (kbd "C-c i n") (lambda () (interactive) (insert "ℕ")))
+(global-set-key (kbd "C-c i i") (lambda () (interactive) (insert "∞")))
+(global-set-key (kbd "C-c i .") (lambda () (interactive) (insert "×")))
+(global-set-key (kbd "C-c i 0") (lambda () (interactive) (insert "∅")))
+(global-set-key (kbd "C-c i u") (lambda () (interactive) (insert "∪")))
+(global-set-key (kbd "C-c i s") (lambda () (interactive) (insert "♯")))
+(global-set-key (kbd "C-c i f") (lambda () (interactive) (insert "♭")))
+(global-set-key (kbd "C-c i p") (lambda () (interactive) (insert "£")))
+
+(global-set-key (kbd "C-c j p") 'quick-jump-go-back)
+(global-set-key (kbd "C-c j b") 'quick-jump-go-back)
+(global-set-key (kbd "C-c j m") 'quick-jump-push-marker)
+(global-set-key (kbd "C-c j n") 'quick-jump-go-forward)
+(global-set-key (kbd "C-c j f") 'quick-jump-go-forward)
+(global-set-key (kbd "C-c j c") 'quick-jump-clear-all-marker)
+
+;;diff shortcuts
+(global-set-key (kbd "C-c d f") 'diff-buffer-with-file)
+
+
+(global-set-key (kbd "C-c s t") 'live-show-ansi-terminal)
+(global-set-key (kbd "C-c s n") 'live-new-ansi-terminal)
+(global-set-key (kbd "C-c s m") 'live-show-messages)
+
+;;window and buffer movement
+(global-set-key (kbd "C-c w s") 'swap-windows)
+(global-set-key (kbd "C-c w r") 'rotate-windows)
+(global-set-key (kbd "C-c w p") 'buf-move-up)
+(global-set-key (kbd "C-c w n") 'buf-move-down)
+(global-set-key (kbd "C-c w b") 'buf-move-left)
+(global-set-key (kbd "C-c w f") 'buf-move-right)
+(global-set-key (kbd "C-c w .") 'shrink-window-horizontally)
+(global-set-key (kbd "C-c w ,") 'enlarge-window-horizontally)
+(global-set-key (kbd "C-c w /") (lambda () (interactive) (enlarge-window -1)))
+(global-set-key (kbd "C-c w '") (lambda () (interactive) (enlarge-window 1)))
+
+;; clojure
+
+(define-key clojure-mode-map (kbd "C-c l l") 'align-cljlet)
+(define-key clojure-mode-map (kbd "C-M-z")   'align-cljlet)
+
+(define-key paredit-mode-map (kbd "C-c l k") 'paredit-splice-sexp-killing-forward)
+(define-key paredit-mode-map (kbd "C-c l w") 'paredit-splice-sexp-killing-backward)
+(define-key paredit-mode-map (kbd "C-c l l") 'align-cljlet)
+(define-key paredit-mode-map (kbd "C-c l t") 'fill-paragraph)
+(define-key paredit-mode-map (kbd "C-c l j") 'live-paredit-forward-slurp-sexp-neatly)
+(define-key paredit-mode-map (kbd "C-M-e")   'paredit-backward-barf-sexp)
+(define-key paredit-mode-map (kbd "C-M-s")   'paredit-backward-slurp-sexp)
+(define-key paredit-mode-map (kbd "C-M-j")   'live-paredit-forward-slurp-sexp-neatly)
+(define-key paredit-mode-map (kbd "C-M-y")   'paredit-forward-barf-sexp)
+(define-key paredit-mode-map (kbd "C-M-z")   'align-cljlet)
+(define-key paredit-mode-map (kbd "M-S")     'paredit-split-sexp)
+(define-key paredit-mode-map (kbd "M-s")     'paredit-splice-sexp)
+(define-key paredit-mode-map (kbd "M-j")     'paredit-join-sexps)
+(define-key paredit-mode-map (kbd "M-P")     'live-paredit-previous-top-level-form)
+(define-key paredit-mode-map (kbd "M-N")     'live-paredit-next-top-level-form)
+(define-key paredit-mode-map (kbd "C-M-f")   'live-paredit-forward)
+(define-key paredit-mode-map (kbd "M-q")     'live-paredit-reindent-defun)
+(define-key paredit-mode-map (kbd "M-d")     'live-paredit-forward-kill-sexp)
+(define-key paredit-mode-map (kbd "M-k")     'live-paredit-backward-kill)
+(define-key paredit-mode-map (kbd "M-\\")    'live-paredit-delete-horizontal-space)
+(define-key paredit-mode-map (kbd "C-M-i")   'paredit-forward-down)
+(define-key paredit-mode-map (kbd "C-M-n")   'paredit-forward-up)
+(define-key paredit-mode-map (kbd "C-M-p")   'paredit-backward-down)
+(define-key paredit-mode-map (kbd "C-M-u")   'paredit-backward-up)
+(define-key paredit-mode-map (kbd "M-T")     'transpose-sexps)
+(define-key paredit-mode-map (kbd "C-M-k")   'live-paredit-copy-sexp-at-point)
+
+;; org-mode
+(define-key org-mode-map (kbd "C-M-f")    'org-metadown)
+(define-key org-mode-map (kbd "C-M-b")    'org-metaup)
+(define-key org-mode-map (kbd "C-M-l")    'org-shiftright)
+(define-key org-mode-map (kbd "C-M-j")    'org-shiftleft)
+(define-key org-mode-map (kbd "C-M-i")    'org-shiftup)
+(define-key org-mode-map (kbd "C-M-k")    'org-shiftdown)
+(define-key org-mode-map (kbd "C-M-_")    'live-decrement-number-at-point)
+
+;;increment and decrement number at point
+(global-set-key (kbd "C-M-_")  'live-decrement-number-at-point)
+(global-set-key (kbd "M-=")    'live-increment-number-at-point)
+(global-set-key (kbd "C-M-=")    'live-increment-number-at-point)
+
+
+;;browse kill ring (visual paste)
+(global-set-key (kbd "M-y") 'browse-kill-ring)
+
+;;make C-] and M-] cut and copy respectively
+(global-set-key (kbd "C-]") 'kill-region)
+(global-set-key (kbd "M-]") 'kill-ring-save)
+
+;; undo
+(global-set-key (kbd "C-M-_") 'undo-tree-undo)
+(global-set-key (kbd "C-_")   'undo-tree-undo)
+
+;;mark current function
+(global-set-key (kbd "C-x C-p") 'mark-defun)
+
+;;use delete-horizontal-space to completely nuke all whitespace
+(global-set-key (kbd "M-SPC ") 'live-delete-whitespace-except-one)
+
+;;make ^h delete rather than help
+(global-set-key (kbd "C-h") 'delete-backward-char)
+(define-key paredit-mode-map (kbd "C-h") 'paredit-backward-delete)
+
+;;redefine help shortcut
+(global-set-key (kbd "M-h") 'help-command)
+(define-key org-mode-map (kbd "M-h") 'help-command)
+
+;;allow the deletion of words:
+;;backward kill word (forward kill word is M-d)
+(global-set-key (kbd "C-\\") 'backward-kill-word)
+(define-key ido-file-completion-map (kbd "C-\\") 'backward-kill-word)
+(define-key paredit-mode-map (kbd "C-\\") 'paredit-backward-kill-word)
+
+;;kill line backwards
+(global-set-key (kbd "M-k") 'live-backwards-kill-line)
+
+;;kill regions
+(global-set-key (kbd "C-x C-k") 'kill-region)
+
+;;set the mark
+(global-set-key (kbd "C-SPC") 'set-mark-command)
+
+;;repeat previous command
+(global-set-key (kbd "M-'") 'repeat)
+
+;;scroll other window
+(global-set-key (kbd "C-M-]") 'scroll-other-window)
+(global-set-key (kbd "C-M-[") 'scroll-other-window-down)
+
+
+
+;;fast vertical naviation
+(global-set-key  (kbd "M-U") (lambda () (interactive) (forward-line -10)))
+(global-set-key  (kbd "M-D") (lambda () (interactive) (forward-line 10)))
+(global-set-key  (kbd "M-p") 'outline-previous-visible-heading)
+(global-set-key  (kbd "M-n") 'outline-next-visible-heading)
+
+;;requires cua-mode for rectangle selection
+(global-set-key (kbd "§") 'cua-set-rectangle-mark)
+
+;; Align your code in a pretty way.
+(global-set-key (kbd "C-x \\") 'align-regexp)
+
+;; comment region
+(global-set-key (kbd "M-/") 'comment-or-uncomment-region)
+
+(global-set-key (kbd "C-s")   'isearch-forward)
+(global-set-key (kbd "C-r")   'isearch-backward)
+(global-set-key (kbd "C-M-s") 'isearch-forward-regexp)
+(global-set-key (kbd "C-M-r") 'isearch-backward-regexp)
+
+;; Jump to a definition in the current file.
+(global-set-key (kbd "C-x C-i") 'idomenu)
+
+;; File
+(global-set-key (kbd "C-x M-f")   'ido-find-file-other-window)
+(global-set-key (kbd "C-x C-M-f") 'find-file-in-project)
+(global-set-key (kbd "C-x f")     'live-recentf-ido-find-file)
+(global-set-key (kbd "C-x C-r")   'ido-recentf-open)
+(global-set-key (kbd "M-`")       'file-cache-minibuffer-complete)
+(global-set-key (kbd "C-x C-b")   'ibuffer)
+
+;; Window switching.
+(global-set-key (kbd "C-x O") (lambda () (interactive) (other-window -1))) ;; back one
+(global-set-key (kbd "C-x C-o") (lambda () (interactive) (other-window 2))) ;; forward two
+
+;; If you want to be able to M-x without meta
+(global-set-key (kbd "C-x C-m") 'execute-extended-command)
+
+;; Magit
+(global-set-key (kbd "C-x g") 'magit-status)
+
+;; Activate occur easily inside isearch
+(define-key isearch-mode-map (kbd "C-o")
+  (lambda () (interactive)
+    (let ((case-fold-search isearch-case-fold-search))
+      (occur (if isearch-regexp isearch-string (regexp-quote isearch-string))))))
+
+;; Ace jump mode
+(global-set-key (kbd "C-o") 'ace-jump-mode)
+
+;; Show documentation/information with M-RET
+(define-key lisp-mode-shared-map (kbd "M-RET") 'live-lisp-describe-thing-at-point)
+(define-key cider-repl-mode-map (kbd "M-RET") 'cider-doc)
+(define-key cider-mode-map (kbd "M-RET") 'cider-doc)
+
+(global-set-key (kbd "C-x o") 'win-switch-dispatch)
+
+(global-set-key (kbd "C-x !") 'live-server-kill-terminal)
+
+
+;; Keybinding for clj-refactor
+
+(define-key clojure-mode-map (kbd "C-:") 'cljr-cycle-stringlike)
+(define-key clojure-mode-map (kbd "C->") 'cljr-cycle-coll)
+
+;;; (cljr-add-keybindings-with-prefix "C-c C-m")
+;; ad: add declaration for current top-level form
+;; ai: add import to namespace declaration, then jump back
+;; ar: add require to namespace declaration, then jump back (see optional setup)
+;; au: add "use" (ie require refer all) to namespace declaration, then jump back
+;; cc: cycle surrounding collection type
+;; ci: refactoring between if and if-not
+;; cp: cycle privacy of defns and defs
+;; dk: destructure keys
+;; el: expand let
+;; il: introduce let
+;; mf: move one or more forms to another namespace, :refer any functions
+;; ml: move to let
+;; pc: run project cleaner functions on the whole project
+;; pf: promote function literal or fn, or fn to defn
+;; rf: rename file, update ns-declaration, and then query-replace new ns in project.
+;; rl: remove-let, inline all variables and remove the let form
+;; rr: remove unused requires
+;; ru: replace all :use in namespace with :refer :all
+;; sn: sort :use, :require and :import in the ns form
+;; sp: Sort all dependency vectors in project.clj
+;; sr: stop referring (removes :refer [] from current require, fixing references)
+;; tf: wrap in thread-first (->) and fully thread
+;; th: thread another expression
+;; tl: wrap in thread-last (->>) and fully thread
+;; ua: fully unwind a threaded expression
+;; uw: unwind a threaded expression
+
+### cider-mode
+While you're in clojure-mode, cider-jack-in is bound for convenience to C-c M-j
+and cider-connect is bound to C-c M-c.
+
+C-x C-e or C-c C-e| Evaluate the form preceding point and display the result in the echo area.  If invoked with a prefix argument, insert the result into the current buffer.
+C-c C-w        | Evaluate the form preceding point and replace it with its result.
+C-c M-e        | Evaluate the form preceding point and output it result to the REPL buffer.  If invoked with a prefix argument, takes you to the REPL buffer after being invoked.
+C-c M-p        | Load the form preceding point in the REPL buffer.
+C-c C-p        | Evaluate the form preceding point and pretty-print the result in a popup buffer.
+C-c C-f        | Evaluate the top level form under point and pretty-print the result in a popup buffer.
+C-M-x C-c C-c  | Evaluate the top level form under point and display the result in the echo area.  If invoked with a prefix argument, insert the result into the current buffer.
+C-c C-r        | Evaluate the region and display the result in the echo area.
+C-c C-b        | Interrupt any pending evaluations.
+C-c C-m        | Invoke `macroexpand-1` on the form at point and display the result in a macroexpansion buffer.  If invoked with a prefix argument, `macroexpand` is used instead of `macroexpand-1`.
+C-c M-m        | Invoke `clojure.walk/macroexpand-all` on the form at point and display the result in a macroexpansion buffer.
+C-c C-n        | Eval the ns form.
+C-c M-n        | Switch the namespace of the REPL buffer to the namespace of the current buffer.
+C-c C-z        | Switch to the relevant REPL buffer. Use a prefix argument to change the namespace of the REPL buffer to match the currently visited source file.
+C-u C-u C-c C-z| Switch to the REPL buffer based on a user prompt for a directory.
+C-c M-d        | Display default REPL connection details, including project directory name, buffer namespace, host and port.
+C-c M-r        | Rotate and display the default nREPL connection.
+C-c M-o        | Clear the entire REPL buffer, leaving only a prompt. Useful if you're running the REPL buffer in a side by side buffer.
+C-c C-k        | Load (eval) the current buffer.
+C-c C-l        | Load (eval) a Clojure file.
+C-c C-d d      | Display doc string for the symbol at point.  If invoked with a prefix argument, or no symbol is found at point, prompt for a symbol.
+C-c C-d j      | Display JavaDoc (in your default browser) for the symbol at point.  If invoked with a prefix argument, or no symbol is found at point, prompt for a symbol.
+C-c M-i        | Inspect expression. Will act on expression at point if present.
+C-c M-t v      | Toggle var tracing.
+C-c M-t n      | Toggle namespace tracing.
+C-c C-u        | Undefine a symbol. If invoked with a prefix argument, or no symbol is found at point, prompt for a symbol.
+C-c ,          | Run tests for namespace.
+C-c C-,        | Re-run test failures/errors for namespace.
+C-c M-,        | Run test at point.
+C-c C-t        | Show the test report buffer.
+M-.            | Jump to the definition of a symbol.  If invoked with a prefix argument, or no symbol is found at point, prompt for a symbol.
+C-c M-.        | Jump to the resource referenced by the string at point.
+M-,            | Return to your pre-jump location.
+M-TAB          | Complete the symbol at point.
+C-c C-d g      | Lookup symbol in Grimoire.
+C-c C-d a      | Apropos search for functions/vars.
+C-c C-d A      | Apropos search for documentation.
+
+### projectile
+
+C-c p f | Display a list of all files in the project. With a prefix argument it will clear the cache first.
+C-c p F | Display a list of all files in all known projects.
+C-c p g | Display a list of all files at point in the project. With a prefix argument it will clear the cache first.
+C-c p 4 f | Jump to a project's file using completion and show it in another window.
+C-c p 4 g | Jump to a project's file based on context at point and show it in another window.
+C-c p d | Display a list of all directories in the project. With a prefix argument it will clear the cache first.
+C-c p 4 d | Switch to a project directory and show it in another window.
+C-c p 4 a | Switch between files with the same name but different extensions in other window.
+C-c p T | Display a list of all test files(specs, features, etc) in the project.
+C-c p l | Display a list of all files in a directory (that's not necessarily a project)
+C-c p s g | Run grep on the files in the project.
+M-- C-c p s g | Run grep on `projectile-grep-default-files` in the project.
+C-c p v | Run `vc-dir` on the root directory of the project.
+C-c p b | Display a list of all project buffers currently open.
+C-c p 4 b | Switch to a project buffer and show it in another window.
+C-c p 4 C-o | Display a project buffer in another window without selecting it.
+C-c p a | Switch between files with the same name but different extensions.
+C-c p o | Runs `multi-occur` on all project buffers currently open.
+C-c p r | Runs interactive query-replace on all files in the projects.
+C-c p i | Invalidates the project cache (if existing).
+C-c p R | Regenerates the projects `TAGS` file.
+C-c p j | Find tag in project's `TAGS` file.
+C-c p k | Kills all project buffers.
+C-c p D | Opens the root of the project in `dired`.
+C-c p e | Shows a list of recently visited project files.
+C-c p s s | Runs `ag` on the project. Requires the presence of `ag.el`.
+C-c p ! | Runs `shell-command` in the root directory of the project.
+C-c p & | Runs `async-shell-command` in the root directory of the project.
+C-c p c | Runs a standard compilation command for your type of project.
+C-c p P | Runs a standard test command for your type of project.
+C-c p t | Toggle between an implementation file and its test file.
+C-c p 4 t | Jump to implementation or test file in other window.
+C-c p z | Adds the currently visited file to the cache.
+C-c p p | Display a list of known projects you can switch to.
+C-c p S | Save all project buffers.
+C-c p m | Run the commander (an interface to run commands with a single key).
+C-c p ESC | Switch to the most recently selected projectile buffer.
+
+| Key    | Command                               |
+|--------+---------------------------------------|
+| b      | popwin:popup-buffer                   |
+| l      | popwin:popup-last-buffer              |
+| o      | popwin:display-buffer                 |
+| C-b    | popwin:switch-to-last-buffer          |
+| C-p    | popwin:original-pop-to-last-buffer    |
+| C-o    | popwin:original-display-last-buffer   |
+| SPC    | popwin:select-popup-window            |
+| s      | popwin:stick-popup-window             |
+| 0      | popwin:close-popup-window             |
+| f, C-f | popwin:find-file                      |
+| e      | popwin:messages                       |
+| C-u    | popwin:universal-display              |
+| 1      | popwin:one-window                     |

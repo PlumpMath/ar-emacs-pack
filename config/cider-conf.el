@@ -1,10 +1,13 @@
+;; (setq cider-show-error-buffer nil)
+;; (setq cider-show-error-buffer 'except-in-repl)
 (setq cider-show-error-buffer 'only-in-repl)
+
 (setq nrepl-buffer-name-show-port t)
 (setq cider-stacktrace-fill-column 100)
 (setq cider-repl-history-size 1000)
 
 ;; Known hosts
-(setq cider-known-endpoints '(("ccw-local" "localhost" "5055")))
+(setq cider-known-endpoints '(("localhost" "5055")))
 
 (add-hook 'cider-repl-mode-hook #'subword-mode)
 
@@ -16,3 +19,14 @@
   '(progn
      (add-to-list 'ac-modes 'cider-mode)
      (add-to-list 'ac-modes 'cider-repl-mode)))
+
+;; popwin
+(push "*cider-apropos*" popwin:special-display-config)
+(push "*cider-macroexpansion*" popwin:special-display-config)
+(push "*cider-description*" popwin:special-display-config)
+(push "*cider-error*" popwin:special-display-config)
+(push '("*cider-compilation*" :noselect t) popwin:special-display-config)
+;; (push "*e-xref*" popwin:special-display-config)
+;; (push '(sldb-mode :stick t) popwin:special-display-config)
+(push 'cider-repl-mode popwin:special-display-config)
+;; (push 'cider-connection-list-mode popwin:special-display-config)
