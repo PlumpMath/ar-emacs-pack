@@ -11,6 +11,7 @@
  '(haskell-process-type (quote ghci))
  '(haskell-stylish-on-save t)
  '(haskell-tags-on-save t)
+ '(safe-local-variable-values (quote ((projectile-grep-defaul-files quote ("*.clj" "*.java")))))
  '(sclang-auto-scroll-post-buffer t)
  '(sclang-eval-line-forward nil))
 (custom-set-faces

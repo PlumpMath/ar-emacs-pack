@@ -28,5 +28,5 @@
 (push '("*cider-compilation*" :noselect t) popwin:special-display-config)
 ;; (push "*e-xref*" popwin:special-display-config)
 ;; (push '(sldb-mode :stick t) popwin:special-display-config)
-(push 'cider-repl-mode popwin:special-display-config)
+;; (push 'cider-repl-mode popwin:special-display-config)
 ;; (push 'cider-connection-list-mode popwin:special-display-config)

@@ -56,7 +56,7 @@
 (global-set-key (kbd "s-SPC") 'set-rectangular-region-anchor)
 
 ;; C-c t custom group emacs live - text shortcuts
-(global-set-key (kbd "C-c t a") 'mc/mark-all-like-this-dwim)
+(global-set-key (kbd "C-c t m a") 'mc/mark-all-like-this-dwim)
 (global-set-key (kbd "C-c t d l") 'duplicate-line)
 
 ;;; phi-search
@@ -80,4 +80,8 @@
 (global-set-key (kbd "C-c d s") 'magit-diff-staged)
 
 ;; git-gutter shortcuts
+(global-set-key (kbd "C-c g u") 'git-gutter:update-all-windows)
+(global-set-key (kbd "C-c g r") 'git-gutter:revert-hunk)
 (global-set-key (kbd "C-c g s") 'git-gutter:stage-hunk)
+(global-set-key (kbd "<M-prior>") 'git-gutter:previous-hunk)
+(global-set-key (kbd "<M-next>") 'git-gutter:next-hunk)

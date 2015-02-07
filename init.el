@@ -67,7 +67,7 @@
 (live-load-config-file "cider-conf.el")
 (live-load-config-file "clojure-snippets-conf.el")
 (live-load-config-file "projectile-conf.el")
-;; (live-load-config-file "themes.el")
+(live-load-config-file "perspective-conf.el")
 
 ;; Load libs with no config
 (require 'xcopypaste)

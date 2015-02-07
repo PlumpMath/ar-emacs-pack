@@ -14,9 +14,6 @@
 (unless window-system
  (when (getenv "DISPLAY")
 
-  (defun xsel-primary () (call-process-region (point-min) (point-max) "xsel" nil 0 nil "--primary" "--input"))
-  (defun xsel-clipboard () (call-process-region (point-min) (point-max) "xsel" nil 0 nil "--clipboard" "--input"))
-
   ;; Callback for when user cuts
   (defun xsel-cut-function (text &optional push)
     ;; Insert text to temp-buffer, and "send" content to xsel stdin
@@ -24,9 +21,10 @@
     (let ((primary-string (with-temp-buffer
                             (insert text)
                             ;; The text is pushed in both "primary" (the one the typically
-                            ;; is used by c-c/c-v)  (that uses
+                            ;; is used by c-c/c-v) and clipboard (that uses
                             ;; mouse-select/middle-button-click)
-                            (xsel-primary))))))
+                            (call-process-region (point-min) (point-max) "xsel" nil 0 nil "--primary" "--input")
+                            (call-process-region (point-min) (point-max) "xsel" nil 0 nil "--clipboard" "--input"))))))
 
   ;; Call back for when user pastes
   (defun xsel-paste-function()

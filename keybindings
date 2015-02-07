@@ -359,8 +359,8 @@ C-c p S | Save all project buffers.
 C-c p m | Run the commander (an interface to run commands with a single key).
 C-c p ESC | Switch to the most recently selected projectile buffer.
 
-| Key    | Command                               |
-|--------+---------------------------------------|
+;; popwin
+
 | b      | popwin:popup-buffer                   |
 | l      | popwin:popup-last-buffer              |
 | o      | popwin:display-buffer                 |
@@ -374,3 +374,15 @@ C-c p ESC | Switch to the most recently selected projectile buffer.
 | e      | popwin:messages                       |
 | C-u    | popwin:universal-display              |
 | 1      | popwin:one-window                     |
+
+;; perspective - commands are all prefixed by C-x x
+
+s -- persp-switch: Query a perspective to switch or create
+k -- persp-remove-buffer: Query a buffer to remove from current perspective
+c -- persp-kill : Query a perspective to kill
+r -- persp-rename: Rename current perspective
+a -- persp-add-buffer: Querry an open buffer to add to current perspective
+A -- persp-set-buffer: Add buffer to current perspective and remove it from all others
+i -- persp-import: Import a given perspective from another frame.
+n, <right> -- persp-next : Switch to next perspective
+p, <left> -- persp-prev: Switch to previous perspective
