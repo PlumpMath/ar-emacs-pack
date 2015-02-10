@@ -164,6 +164,25 @@ perspective in which case `projectile-switch-project' is called."
     (when (or (not persp) is-curr)
       (projectile-switch-project-by-name project-to-switch))))
 
+;; (defun projectile-create-test-file ()
+;;   (interactive)
+;;   (let* ((test-file (s-replace-all '(("/src/" . "/test/") (".clj" . "_test.clj"))
+;;                                    (buffer-file-name)))
+;;          (test-dir (file-name-directory test-file))
+;;          (test-name (file-name-nondirectory test-file)))
+;;     (make-directory test-dir :create-parents)
+;;     (find-file-other-window test-file)
+;;     (cljr--add-ns-if-blank-clj-file)
+;;     (save-buffer)))
+
+;; (defun projectile--create-missing-test-file (oldfun &rest args)
+;;   (condition-case nil
+;;       (funcall oldfun)
+;;     ('error (save-window-excursion (projectile-create-test-file)) (funcall oldfun))))
+
+;; (advice-add 'projectile-toggle-between-implementation-and-test :around
+;;             #'projectile--create-missing-test-file)
+
 (provide 'misc)
 
 ;;; misc.el ends here

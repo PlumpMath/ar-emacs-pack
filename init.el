@@ -68,6 +68,7 @@
 (live-load-config-file "clojure-snippets-conf.el")
 (live-load-config-file "projectile-conf.el")
 (live-load-config-file "perspective-conf.el")
+(live-load-config-file "helm-conf.el")
 
 ;; Load libs with no config
 (require 'xcopypaste)

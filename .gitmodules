@@ -22,3 +22,18 @@
 [submodule "lib/f.el"]
 	path = lib/f.el
 	url = git@github.com:rejeep/f.el.git
+[submodule "lib/perspective-el"]
+	path = lib/perspective-el
+	url = git@github.com:nex3/perspective-el.git
+[submodule "lib/emacs-async"]
+	path = lib/emacs-async
+	url = git@github.com:jwiegley/emacs-async.git
+[submodule "lib/emacs-helm-ag"]
+	path = lib/emacs-helm-ag
+	url = git@github.com:syohex/emacs-helm-ag.git
+[submodule "lib/helm-descbinds"]
+	path = lib/helm-descbinds
+	url = git@github.com:emacs-helm/helm-descbinds.git
+[submodule "lib/helm"]
+	path = lib/helm
+	url = https://github.com/emacs-helm/helm.git
