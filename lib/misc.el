@@ -164,6 +164,49 @@ perspective in which case `projectile-switch-project' is called."
     (when (or (not persp) is-curr)
       (projectile-switch-project-by-name project-to-switch))))
 
+;; needed for prelude-goto-symbol
+(require 'imenu)
+
+(defun prelude-goto-symbol (&optional symbol-list)
+  "Refresh imenu and jump to a place in the buffer using Ido."
+  (interactive)
+  (cond
+   ((not symbol-list)
+    (let (name-and-pos symbol-names position)
+      (while (progn
+               (imenu--cleanup)
+               (setq imenu--index-alist nil)
+               (prelude-goto-symbol (imenu--make-index-alist))
+               (setq selected-symbol
+                     (completing-read "Symbol? " (reverse symbol-names)))
+               (string= (car imenu--rescan-item) selected-symbol)))
+      (unless (and (boundp 'mark-active) mark-active)
+        (push-mark nil t nil))
+      (setq position (cdr (assoc selected-symbol name-and-pos)))
+      (cond
+       ((overlayp position)
+        (goto-char (overlay-start position)))
+       (t
+        (goto-char position)))
+      (recenter)))
+   ((listp symbol-list)
+    (dolist (symbol symbol-list)
+      (let (name position)
+        (cond
+         ((and (listp symbol) (imenu--subalist-p symbol))
+          (prelude-goto-symbol symbol))
+         ((listp symbol)
+          (setq name (car symbol))
+          (setq position (cdr symbol)))
+         ((stringp symbol)
+          (setq name symbol)
+          (setq position
+                (get-text-property 1 'org-imenu-marker symbol))))
+        (unless (or (null position) (null name)
+                    (string= (car imenu--rescan-item) name))
+          (add-to-list 'symbol-names (substring-no-properties name))
+          (add-to-list 'name-and-pos (cons (substring-no-properties name) position))))))))
+
 ;; (defun projectile-create-test-file ()
 ;;   (interactive)
 ;;   (let* ((test-file (s-replace-all '(("/src/" . "/test/") (".clj" . "_test.clj"))

@@ -3,9 +3,10 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        advanced-return
         ))
 
 (setq mc/cmds-to-run-once
       '(
-        smex
+        cljr-raise-sexp
         ))

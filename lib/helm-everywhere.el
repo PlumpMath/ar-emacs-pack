@@ -65,7 +65,7 @@
 ;; enable Helm version of Projectile with replacment commands
 (helm-projectile-on)
 
-(setq helm-ag-base-command "ag --nogroup --ignore-case")
+(setq helm-ag-base-command "ag --nocolor --nogroup --ignore-case")
 (setq helm-ag-command-option "--all-text")
 (setq helm-ag-insert-at-point 'symbol)
 

@@ -40,6 +40,7 @@
 (global-set-key (kbd "C-c x g") 'git-gutter-mode)
 (global-set-key (kbd "C-c x p") 'cider-repl-use-pretty-printing)
 (global-set-key (kbd "C-c x f") 'global-fci-mode-custom)
+(global-set-key (kbd "C-c x s") 'subword-mode)
 
 ;;; C-c r custom group for clj-refactor
 (cljr-add-keybindings-with-prefix "C-c r")
