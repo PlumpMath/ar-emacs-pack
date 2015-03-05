@@ -19,14 +19,3 @@
   '(progn
      (add-to-list 'ac-modes 'cider-mode)
      (add-to-list 'ac-modes 'cider-repl-mode)))
-
-;; popwin
-(push "*cider-apropos*" popwin:special-display-config)
-(push "*cider-macroexpansion*" popwin:special-display-config)
-(push "*cider-description*" popwin:special-display-config)
-(push "*cider-error*" popwin:special-display-config)
-(push '("*cider-compilation*" :noselect t) popwin:special-display-config)
-;; (push "*e-xref*" popwin:special-display-config)
-;; (push '(sldb-mode :stick t) popwin:special-display-config)
-;; (push 'cider-repl-mode popwin:special-display-config)
-;; (push 'cider-connection-list-mode popwin:special-display-config)

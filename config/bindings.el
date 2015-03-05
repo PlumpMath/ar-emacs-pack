@@ -73,6 +73,7 @@
 (define-key undo-tree-map (kbd "C-/") 'comment-or-uncomment-region-or-line)
 (define-key paredit-mode-map (kbd "C-M-d") nil)
 (define-key clojure-mode-map (kbd "C-M-d") 'live-delete-whitespace-except-one)
+(global-set-key (kbd "C-M-.") 'prelude-goto-symbol)
 
 ;; gracefully kill emacs --daemon
 (global-set-key (kbd "C-x C-M-c") 'save-buffers-kill-emacs)

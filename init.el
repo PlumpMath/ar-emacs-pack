@@ -60,6 +60,17 @@
 ;;           (lambda ()
 ;;             (git-gutter:linum-setup)))
 
+;; popwin
+(push "*cider-apropos*" popwin:special-display-config)
+(push "*cider-macroexpansion*" popwin:special-display-config)
+(push "*cider-description*" popwin:special-display-config)
+(push "*cider-error*" popwin:special-display-config)
+(push '("*cider-compilation*" :noselect t) popwin:special-display-config)
+(push '("*git-gutter:diff*" :noselect t) popwin:special-display-config)
+;; (push '(sldb-mode :stick t) popwin:special-display-config)
+;; (push 'cider-repl-mode popwin:special-display-config)
+;; (push 'cider-connection-list-mode popwin:special-display-config)
+
 ;; Load bindings and configs
 (live-load-config-file "bindings.el")
 (live-load-config-file "phi-search-conf.el")

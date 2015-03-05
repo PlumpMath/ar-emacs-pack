@@ -143,26 +143,26 @@
 	  (select-window first-win)
 	  (if this-win-2nd (other-window 1))))))
 
-(defun projectile-persp-switch-project (project-to-switch)
-  "Switch to a project or perspective we have visited before.
-If the perspective of corresponding project does not exist, this
-function will call `persp-switch' to create one and switch to
-that before `projectile-switch-project' invokes
-`projectile-switch-project-action'.
+;; (defun projectile-persp-switch-project (project-to-switch)
+;;   "Switch to a project or perspective we have visited before.
+;; If the perspective of corresponding project does not exist, this
+;; function will call `persp-switch' to create one and switch to
+;; that before `projectile-switch-project' invokes
+;; `projectile-switch-project-action'.
 
-Otherwise, this function calls `persp-switch' to switch to an
-existing perspective of the project unless we're already in that
-perspective in which case `projectile-switch-project' is called."
-  (interactive (list (projectile-completing-read
-                      "Switch to project: "
-                      (projectile-relevant-known-projects))))
-  (let* ((name (file-name-nondirectory (directory-file-name project-to-switch)))
-         (persp (gethash name perspectives-hash))
-         (is-curr (and persp (equal persp persp-curr))))
-    (when (or (not persp) (not is-curr))
-      (persp-switch name))
-    (when (or (not persp) is-curr)
-      (projectile-switch-project-by-name project-to-switch))))
+;; Otherwise, this function calls `persp-switch' to switch to an
+;; existing perspective of the project unless we're already in that
+;; perspective in which case `projectile-switch-project' is called."
+;;   (interactive (list (projectile-completing-read
+;;                       "Switch to project: "
+;;                       (projectile-relevant-known-projects))))
+;;   (let* ((name (file-name-nondirectory (directory-file-name project-to-switch)))
+;;          (persp (gethash name perspectives-hash))
+;;          (is-curr (and persp (equal persp persp-curr))))
+;;     (when (or (not persp) (not is-curr))
+;;       (persp-switch name))
+;;     (when (or (not persp) is-curr)
+;;       (projectile-switch-project-by-name project-to-switch))))
 
 ;; needed for prelude-goto-symbol
 (require 'imenu)
