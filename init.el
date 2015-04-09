@@ -11,7 +11,6 @@
 (setq live-disable-zone t)
 (setq cua-enable-cua-keys t)
 (setq mouse-drag-copy-region t)
-(setq mc/list-file "~/.live-packs/ar-emacs-pack/mc-lists.el")
 (setq visible-bell t)
 
 ;;; Tabs and indent
@@ -56,9 +55,8 @@
 (add-hook 'clojure-mode-hook 'linum-mode)
 (add-hook 'emacs-lisp-mode-hook 'linum-mode)
 
-;; (add-hook 'linum-mode-hook
-;;           (lambda ()
-;;             (git-gutter:linum-setup)))
+;; Avoid whitespace cleaning
+(push 'clojure-mode live-ignore-whitespace-modes)
 
 ;; popwin
 (push "*cider-apropos*" popwin:special-display-config)

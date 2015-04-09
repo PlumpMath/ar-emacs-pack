@@ -3,10 +3,10 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        paredit-forward-delete
         ))
 
 (setq mc/cmds-to-run-once
       '(
         handle-switch-frame
-        paredit-forward-delete
         ))
