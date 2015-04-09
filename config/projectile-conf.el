@@ -11,11 +11,3 @@
 (setq projectile-idle-timer-seconds 60)
 
 (projectile-global-mode)
-
-;; projectile
-(define-key projectile-mode-map (kbd "s-d") 'projectile-find-dir)
-(define-key projectile-mode-map (kbd "s-p") 'projectile-persp-switch-project)
-;; (define-key projectile-mode-map (kbd "s-p") 'projectile-switch-project)
-(define-key projectile-mode-map (kbd "s-f") 'projectile-find-file)
-(define-key projectile-mode-map (kbd "s-b") 'projectile-switch-to-buffer)
-(define-key projectile-mode-map (kbd "s-.") 'projectile-find-tag)

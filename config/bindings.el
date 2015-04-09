@@ -47,6 +47,10 @@
 
 ;;; C-c w custom group for windows
 (global-set-key (kbd "C-c w t") 'toggle-window-split)
+(global-set-key (kbd "C-c w <up>") 'buf-move-up)
+(global-set-key (kbd "C-c w <down>") 'buf-move-down)
+(global-set-key (kbd "C-c w <left>") 'buf-move-left)
+(global-set-key (kbd "C-c w <right>") 'buf-move-right)
 
 ;;; multiple-cursors.el - goes in the C-c t prefix
 (global-set-key (kbd "<C-S-mouse-1>") 'mc/add-cursor-on-click) ; works just in a X window
@@ -68,12 +72,17 @@
 ;;; redefinitions of some Emacs Live bindings
 (global-set-key (kbd "C-h") 'help-command)
 (define-key org-mode-map (kbd "C-h") 'help-command)
-(define-key paredit-mode-map (kbd "C-h") 'help-command)
 (define-key undo-tree-map (kbd "C-_") 'comment-or-uncomment-region-or-line)
 (define-key undo-tree-map (kbd "C-/") 'comment-or-uncomment-region-or-line)
-(define-key paredit-mode-map (kbd "C-M-d") nil)
-(define-key clojure-mode-map (kbd "C-M-d") 'live-delete-whitespace-except-one)
+(define-key clojure-mode-map (kbd "C-M-\\") 'live-delete-whitespace-except-one)
 (global-set-key (kbd "C-M-.") 'prelude-goto-symbol)
+
+;; Rebind Paredit
+(eval-after-load 'paredit
+  '(progn
+     (define-key paredit-mode-map (kbd "C-h") 'help-command)
+     (define-key paredit-mode-map (kbd "C-)") 'live-paredit-forward-slurp-sexp-neatly)
+     (define-key paredit-mode-map (kbd "C-<right>") 'live-paredit-forward-slurp-sexp-neatly)))
 
 ;; gracefully kill emacs --daemon
 (global-set-key (kbd "C-x C-M-c") 'save-buffers-kill-emacs)
@@ -87,3 +96,13 @@
 (global-set-key (kbd "C-c g s") 'git-gutter:stage-hunk)
 (global-set-key (kbd "<M-prior>") 'git-gutter:previous-hunk)
 (global-set-key (kbd "<M-next>") 'git-gutter:next-hunk)
+
+;; projectile
+(global-set-key (kbd "s-d") 'helm-projectile-find-dir)
+(global-set-key (kbd "s-p") 'projectile-persp-switch-project)
+;; (global-set-key (kbd "s-p") 'projectile-switch-project)
+(global-set-key (kbd "s-f") 'helm-projectile-find-file)
+(global-set-key (kbd "s-b") 'helm-projectile-switch-to-buffer)
+(global-set-key (kbd "s-.") 'projectile-find-tag)
+(global-set-key (kbd "s-s") 'helm-projectile-ag)
+(global-set-key (kbd "s-g") 'helm-projectile-grep)

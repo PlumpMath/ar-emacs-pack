@@ -66,7 +66,4 @@
 
 ;; (push "Press <C-c p h> to navigate a project in Helm." prelude-tips)
 
-;; helm
-(global-set-key (kbd "s-g") 'projectile-helm-ag)
-
 ;;; prelude-helm.el ends here
