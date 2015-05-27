@@ -84,6 +84,7 @@
 (live-load-config-file "projectile-conf.el")
 (live-load-config-file "perspective-conf.el")
 (live-load-config-file "helm-conf.el")
+(live-load-config-file "restclient-conf.el")
 
 ;; Load libs with no config
 (require 'xcopypaste)
