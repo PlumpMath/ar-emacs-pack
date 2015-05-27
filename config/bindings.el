@@ -34,16 +34,22 @@
 (define-key ac-complete-mode-map "\r" 'ac-complete)
 (define-key ac-complete-mode-map "t" 'ac-expand)
 
-;;; C-c x custom group for enabling stuff
+;;; C-c x custom group for enabling modes
 (global-set-key (kbd "C-c x w") 'whitespace-mode)
 (global-set-key (kbd "C-c x l") 'linum-mode)
 (global-set-key (kbd "C-c x g") 'git-gutter-mode)
-(global-set-key (kbd "C-c x p") 'cider-repl-use-pretty-printing)
 (global-set-key (kbd "C-c x f") 'global-fci-mode-custom)
 (global-set-key (kbd "C-c x s") 'subword-mode)
 
-;;; C-c r custom group for clj-refactor
+;;; C-c custom commands
+(global-set-key (kbd "C-c r p p") 'cider-repl-use-pretty-printing)
+(global-set-key (kbd "C-c w c") 'whitespace-cleanup)
+
+;;; clj-refactor - C-c r
 (cljr-add-keybindings-with-prefix "C-c r")
+(global-set-key (kbd "C-M-[") 'cljr-cycle-coll)
+(global-set-key (kbd "C-M-]") 'cljr-promote-function)
+(global-set-key (kbd "C->") 'cljr-cycle-privacy)
 
 ;;; C-c w custom group for windows
 (global-set-key (kbd "C-c w t") 'toggle-window-split)
@@ -51,6 +57,8 @@
 (global-set-key (kbd "C-c w <down>") 'buf-move-down)
 (global-set-key (kbd "C-c w <left>") 'buf-move-left)
 (global-set-key (kbd "C-c w <right>") 'buf-move-right)
+(global-set-key (kbd "C-c w o <prior>") 'scroll-other-window-down)
+(global-set-key (kbd "C-c w o <next>") 'scroll-other-window)
 
 ;;; multiple-cursors.el - goes in the C-c t prefix
 (global-set-key (kbd "<C-S-mouse-1>") 'mc/add-cursor-on-click) ; works just in a X window
@@ -63,6 +71,7 @@
 ;; C-c t custom group emacs live - text shortcuts
 (global-set-key (kbd "C-c t m a") 'mc/mark-all-like-this-dwim)
 (global-set-key (kbd "C-c t d l") 'duplicate-line)
+(global-set-key (kbd "C-c t t s") 'clojure-toggle-keyword-string)
 
 ;;; phi-search
 (global-set-key (kbd "C-s") 'phi-search)

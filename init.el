@@ -44,8 +44,13 @@
     (t (:inverse-video t)))))
 
 ;; git-gutter and linum
+(global-git-gutter-mode t)
 (git-gutter:linum-setup)
-(global-git-gutter-mode +1)
+
+(add-hook 'clojure-mode-hook 'git-gutter-mode)
+
+(custom-set-variables
+ '(git-gutter:update-interval 2))
 
 ;; yasnippet + clojure
 (add-hook 'clojure-mode-hook
@@ -63,6 +68,7 @@
 (push "*cider-macroexpansion*" popwin:special-display-config)
 (push "*cider-description*" popwin:special-display-config)
 (push "*cider-error*" popwin:special-display-config)
+(push "*cider-doc*" popwin:special-display-config)
 (push '("*cider-compilation*" :noselect t) popwin:special-display-config)
 (push '("*git-gutter:diff*" :noselect t) popwin:special-display-config)
 ;; (push '(sldb-mode :stick t) popwin:special-display-config)
