@@ -143,27 +143,6 @@
 	  (select-window first-win)
 	  (if this-win-2nd (other-window 1))))))
 
-;; (defun projectile-persp-switch-project (project-to-switch)
-;;   "Switch to a project or perspective we have visited before.
-;; If the perspective of corresponding project does not exist, this
-;; function will call `persp-switch' to create one and switch to
-;; that before `projectile-switch-project' invokes
-;; `projectile-switch-project-action'.
-
-;; Otherwise, this function calls `persp-switch' to switch to an
-;; existing perspective of the project unless we're already in that
-;; perspective in which case `projectile-switch-project' is called."
-;;   (interactive (list (projectile-completing-read
-;;                       "Switch to project: "
-;;                       (projectile-relevant-known-projects))))
-;;   (let* ((name (file-name-nondirectory (directory-file-name project-to-switch)))
-;;          (persp (gethash name perspectives-hash))
-;;          (is-curr (and persp (equal persp persp-curr))))
-;;     (when (or (not persp) (not is-curr))
-;;       (persp-switch name))
-;;     (when (or (not persp) is-curr)
-;;       (projectile-switch-project-by-name project-to-switch))))
-
 ;; needed for prelude-goto-symbol
 (require 'imenu)
 
@@ -207,24 +186,36 @@
           (add-to-list 'symbol-names (substring-no-properties name))
           (add-to-list 'name-and-pos (cons (substring-no-properties name) position))))))))
 
-;; (defun projectile-create-test-file ()
-;;   (interactive)
-;;   (let* ((test-file (s-replace-all '(("/src/" . "/test/") (".clj" . "_test.clj"))
-;;                                    (buffer-file-name)))
-;;          (test-dir (file-name-directory test-file))
-;;          (test-name (file-name-nondirectory test-file)))
-;;     (make-directory test-dir :create-parents)
-;;     (find-file-other-window test-file)
-;;     (cljr--add-ns-if-blank-clj-file)
-;;     (save-buffer)))
+(defun projectile--testify-impl-name (impl-file-name)
+  (let* ((project-type (projectile-project-type))
+         (test-prefix (funcall projectile-test-prefix-function project-type))
+         (test-suffix (funcall projectile-test-suffix-function project-type)))
+    (cond
+     (test-prefix (concat test-prefix impl-file-name))
+     (test-suffix (concat impl-file-name test-suffix))
+     (t (error "Project type not supported!")))))
 
-;; (defun projectile--create-missing-test-file (oldfun &rest args)
-;;   (condition-case nil
-;;       (funcall oldfun)
-;;     ('error (save-window-excursion (projectile-create-test-file)) (funcall oldfun))))
+(defun projectile-create-test-file-for (impl-file)
+  (interactive)
+  (let* ((test-file (projectile--testify-impl-name (file-name-nondirectory impl-file)))
+         (test-dir (replace-regexp-in-string "src/" "test/" (file-name-directory impl-file))))
+    (unless (file-exists-p (expand-file-name test-file test-dir))
+      (progn (unless (file-exists-p test-dir)
+               (make-directory test-dir :create-parents))
+             (find-file-other-window (concat test-dir test-file))
+             (save-buffer)))))
 
-;; (advice-add 'projectile-toggle-between-implementation-and-test :around
-;;             #'projectile--create-missing-test-file)
+(defadvice projectile-toggle-between-implementation-and-test
+  (around expez--create-missing-test-file)
+  "Creates a test file if not found in the test/ folder of the project."
+  (message "here")
+  (let ((file-name (buffer-file-name)))
+    (if (projectile-test-file-p file-name)
+        ad-do-it
+      (progn (save-window-excursion (projectile-create-test-file-for file-name))
+             ad-do-it))))
+
+(ad-activate 'projectile-toggle-between-implementation-and-test)
 
 ;; Teach compile the syntax of the kibit output
 (require 'compile)
@@ -245,6 +236,11 @@
    Display the results in a hyperlinked *compilation* buffer."
   (interactive)
   (compile (concat "lein kibit " buffer-file-name)))
+
+
+(defun goto-messages-buffer ()
+  (interactive)
+  (switch-to-buffer "*Messages*"))
 
 (provide 'misc)
 

@@ -115,3 +115,4 @@
 (global-set-key (kbd "s-.") 'projectile-find-tag)
 (global-set-key (kbd "s-s") 'helm-projectile-ag)
 (global-set-key (kbd "s-g") 'helm-projectile-grep)
+(global-set-key (kbd "s-t") 'projectile-toggle-between-implementation-and-test)

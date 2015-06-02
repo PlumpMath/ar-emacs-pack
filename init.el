@@ -80,11 +80,12 @@
 (live-load-config-file "phi-search-conf.el")
 (live-load-config-file "column-indicator-conf.el")
 (live-load-config-file "cider-conf.el")
-(live-load-config-file "clojure-snippets-conf.el")
+(live-load-config-file "clojure-conf.el")
 (live-load-config-file "projectile-conf.el")
 (live-load-config-file "perspective-conf.el")
 (live-load-config-file "helm-conf.el")
 (live-load-config-file "restclient-conf.el")
+;; (live-load-config-file "midje-conf.el") ;; not that useful after all
 
 ;; Load libs with no config
 (require 'xcopypaste)
