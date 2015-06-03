@@ -86,6 +86,7 @@
 (live-load-config-file "helm-conf.el")
 (live-load-config-file "restclient-conf.el")
 (live-load-config-file "midje-conf.el")
+(live-load-config-file "eval-in-repl-conf.el")
 
 ;; Load libs with no config
 (require 'xcopypaste)
