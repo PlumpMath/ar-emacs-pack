@@ -85,6 +85,7 @@
 (define-key undo-tree-map (kbd "C-/") 'comment-or-uncomment-region-or-line)
 (define-key clojure-mode-map (kbd "C-M-\\") 'live-delete-whitespace-except-one)
 (global-set-key (kbd "C-M-.") 'prelude-goto-symbol)
+(define-key cider-mode-map (kbd "C-M-x") 'cider-eval-sexp-at-point-in-repl)
 
 ;; Rebind Paredit
 (eval-after-load 'paredit

@@ -85,7 +85,7 @@
 (live-load-config-file "perspective-conf.el")
 (live-load-config-file "helm-conf.el")
 (live-load-config-file "restclient-conf.el")
-;; (live-load-config-file "midje-conf.el") ;; not that useful after all
+(live-load-config-file "midje-conf.el")
 
 ;; Load libs with no config
 (require 'xcopypaste)
