@@ -6,12 +6,14 @@
 ;; ielm support (for emacs lisp)
 (require 'eval-in-repl-ielm)
 
+(setq eir-jump-forward-after-eval nil)
+
 ;; for .el files
-;; (define-key emacs-lisp-mode-map (kbd "<C-return>") 'eir-eval-in-ielm)
+(define-key emacs-lisp-mode-map (kbd "C-M-x") 'eir-eval-in-ielm)
 ;; for *scratch*
-;; (define-key lisp-interaction-mode-map (kbd "<C-return>") 'eir-eval-in-ielm)
+(define-key lisp-interaction-mode-map (kbd "C-M-x") 'eir-eval-in-ielm)
 ;; for M-x info
-;; (define-key Info-mode-map (kbd "<C-return>") 'eir-eval-in-ielm)
+;;(define-key Info-mode-map (kbd "C-M-x") 'eir-eval-in-ielm)
 
 ;; cider support (for Clojure)
 (require 'cider) ; if not done elsewhere

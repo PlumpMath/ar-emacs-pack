@@ -208,7 +208,6 @@
 (defadvice projectile-toggle-between-implementation-and-test
   (around expez--create-missing-test-file)
   "Creates a test file if not found in the test/ folder of the project."
-  (message "here")
   (let ((file-name (buffer-file-name)))
     (if (projectile-test-file-p file-name)
         ad-do-it
@@ -265,6 +264,14 @@
     (goto-char (point-max))
     (insert form)
     (cider-repl-return)))
+
+(defun cask-init ()
+  (let ((cask-exe "~/.cask/cask.el"))
+    (if (file-exists-p cask-exe)
+        (progn
+          (require 'cask cask-exe)
+          (cask-initialize))
+      (message "Warning: ~/.cask/cask.el not found."))))
 
 (provide 'misc)
 
