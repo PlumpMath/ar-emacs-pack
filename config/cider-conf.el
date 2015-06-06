@@ -41,7 +41,6 @@
     (cider-repl-return)))
 
 ;; From https://github.com/stuartsierra/dotfiles
-
 (defun cider-refresh ()
   (interactive)
   (save-some-buffers t 'clj-file-p)

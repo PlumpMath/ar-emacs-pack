@@ -186,36 +186,6 @@
           (add-to-list 'symbol-names (substring-no-properties name))
           (add-to-list 'name-and-pos (cons (substring-no-properties name) position))))))))
 
-(defun projectile--testify-impl-name (impl-file-name)
-  (let* ((project-type (projectile-project-type))
-         (test-prefix (funcall projectile-test-prefix-function project-type))
-         (test-suffix (funcall projectile-test-suffix-function project-type)))
-    (cond
-     (test-prefix (concat test-prefix impl-file-name))
-     (test-suffix (concat impl-file-name test-suffix))
-     (t (error "Project type not supported!")))))
-
-(defun projectile-create-test-file-for (impl-file)
-  (interactive)
-  (let* ((test-file (projectile--testify-impl-name (file-name-nondirectory impl-file)))
-         (test-dir (replace-regexp-in-string "src/" "test/" (file-name-directory impl-file))))
-    (unless (file-exists-p (expand-file-name test-file test-dir))
-      (progn (unless (file-exists-p test-dir)
-               (make-directory test-dir :create-parents))
-             (find-file-other-window (concat test-dir test-file))
-             (save-buffer)))))
-
-(defadvice projectile-toggle-between-implementation-and-test
-  (around expez--create-missing-test-file)
-  "Creates a test file if not found in the test/ folder of the project."
-  (let ((file-name (buffer-file-name)))
-    (if (projectile-test-file-p file-name)
-        ad-do-it
-      (progn (save-window-excursion (projectile-create-test-file-for file-name))
-             ad-do-it))))
-
-(ad-activate 'projectile-toggle-between-implementation-and-test)
-
 ;; Teach compile the syntax of the kibit output
 (require 'compile)
 (add-to-list 'compilation-error-regexp-alist-alist
@@ -253,7 +223,6 @@
 ;;     (nrepl-return)))
 
 ;; If you are using CIDER below is the equivalent.
-
 (defun cider-eval-sexp-at-point-in-repl ()
   (interactive)
   (let ((form (cider-sexp-at-point)))
@@ -265,13 +234,15 @@
     (insert form)
     (cider-repl-return)))
 
-(defun cask-init ()
-  (let ((cask-exe "~/.cask/cask.el"))
-    (if (file-exists-p cask-exe)
-        (progn
-          (require 'cask cask-exe)
-          (cask-initialize))
-      (message "Warning: ~/.cask/cask.el not found."))))
+;; If you are using Cask for your Emacs configuration, add this to your ~/.emacs.d/init.el file:
+;; (defun cask-init ()
+;;   (interactive)
+;;   (let ((cask-exe "~/.cask/cask.el"))
+;;     (if (file-exists-p cask-exe)
+;;         (progn
+;;           (require 'cask cask-exe)
+;;           (cask-initialize))
+;;       (message "Warning: ~/.cask/cask.el not found."))))
 
 (provide 'misc)
 

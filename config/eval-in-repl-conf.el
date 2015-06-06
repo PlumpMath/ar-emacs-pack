@@ -6,7 +6,7 @@
 ;; ielm support (for emacs lisp)
 (require 'eval-in-repl-ielm)
 
-(setq eir-jump-forward-after-eval nil)
+(setq eir-jump-after-eval nil)
 
 ;; for .el files
 (define-key emacs-lisp-mode-map (kbd "C-M-x") 'eir-eval-in-ielm)
