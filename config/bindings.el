@@ -107,6 +107,7 @@
 (global-set-key (kbd "C-c g s") 'git-gutter:stage-hunk)
 (global-set-key (kbd "<M-prior>") 'git-gutter:previous-hunk)
 (global-set-key (kbd "<M-next>") 'git-gutter:next-hunk)
+(global-set-key (kbd "C-c g d") 'git-gutter:popup-hunk)
 
 ;; projectile
 (global-set-key (kbd "s-d") 'helm-projectile-find-dir)

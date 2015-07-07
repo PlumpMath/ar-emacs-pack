@@ -84,7 +84,7 @@
 ;; Load bindings and configs
 (live-load-config-file "bindings.el")
 (live-load-config-file "phi-search-conf.el")
-(live-load-config-file "column-indicator-conf.el")
+;; (live-load-config-file "column-indicator-conf.el")
 (live-load-config-file "cider-conf.el")
 (live-load-config-file "clojure-conf.el")
 (live-load-config-file "projectile-conf.el")
