@@ -97,7 +97,11 @@
 ;; flyspell
 (add-hook 'git-commit-mode-hook
           (lambda ()
-            (flyspell-prog-mode)))
+            (flyspell-mode)))
+
+(add-hook 'git-rebase-mode-hook
+          (lambda ()
+            (flyspell-mode)))
 
 ;; Load libs with no config
 (require 'xcopypaste)
