@@ -28,6 +28,16 @@
 
 (add-to-list 'auto-mode-alist '("\\.\\(cljc|cljs\\|dtm\\|edn\\)$" . clojure-mode))
 
-
 (live-add-pack-lib "clojure-snippets")
 (require 'clojure-snippets)
+
+;; clj-refactor
+(setq cljr-favor-prefix-notation nil)
+
+;; clojure hooks
+(add-hook 'clojure-mode-hook
+          (lambda ()
+            (yas/minor-mode t)
+            (flyspell-prog-mode)
+            (linum-mode t)
+            (git-gutter-mode t)))

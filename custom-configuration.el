@@ -12,7 +12,7 @@
  '(haskell-process-type (quote ghci))
  '(haskell-stylish-on-save t)
  '(haskell-tags-on-save t)
- '(safe-local-variable-values (quote ((projectile-project-type . lein-midje) (projectile-grep-default-files quote ("*.clj" "*.java")))))
+ '(safe-local-variable-values (quote ((projectile-create-missing-test-files . t) (projectile-project-type . lein-midje) (projectile-grep-default-files quote ("*.clj" "*.java")))))
  '(sclang-auto-scroll-post-buffer t)
  '(sclang-eval-line-forward nil))
 (custom-set-faces

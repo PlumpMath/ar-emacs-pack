@@ -53,6 +53,7 @@
 
 ;;; C-c w custom group for windows
 (global-set-key (kbd "C-c w t") 'toggle-window-split)
+(global-set-key (kbd "C-c w s") 'resize-window)
 (global-set-key (kbd "C-c w <up>") 'buf-move-up)
 (global-set-key (kbd "C-c w <down>") 'buf-move-down)
 (global-set-key (kbd "C-c w <left>") 'buf-move-left)

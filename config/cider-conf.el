@@ -44,8 +44,8 @@
 (defun cider-refresh ()
   (interactive)
   (save-some-buffers t 'clj-file-p)
-  (cider-execute-in-current-repl
+  (cider-interactive-eval
    "(require 'clojure.tools.namespace.repl) (clojure.tools.namespace.repl/refresh)"))
 
-(global-set-key (kbd "s-M-r") 'cider-refresh)
+(global-set-key (kbd "M-s-r") 'cider-refresh)
 (global-set-key (kbd "s-r") 'cider-repl-reset)

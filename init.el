@@ -2,6 +2,10 @@
 ;; AR pack init file
 ;;
 
+;;; Fonts
+(set-face-attribute 'default nil :height 117)
+;;(set-default-font "Ubuntu Mono-12")
+
 ;;; No backups
 (setq make-backup-files nil) ; stop creating backup~ files
 (setq auto-save-default nil) ; stop creating #autosave# files
@@ -43,25 +47,23 @@
     (((class color) (background light)) (:background "yellow" :foreground "yellow"))
     (t (:inverse-video t)))))
 
+;; strong rainbow delimiters
+(set-face-attribute 'rainbow-delimiters-unmatched-face nil
+                    :foreground "red3"
+                    :inherit 'error)
+
+(set-face-attribute 'rainbow-delimiters-mismatched-face nil
+                    :foreground "red4"
+                    :inherit 'error)
+
 ;; git-gutter and linum
 (global-git-gutter-mode t)
 (git-gutter:linum-setup)
 
-(add-hook 'clojure-mode-hook 'git-gutter-mode)
-
 (custom-set-variables
  '(git-gutter:update-interval 2))
 
-;; yasnippet + clojure
-(add-hook 'clojure-mode-hook
-          (lambda ()
-            (yas/minor-mode 1)))
-
-(add-hook 'clojure-mode-hook 'linum-mode)
 (add-hook 'emacs-lisp-mode-hook 'linum-mode)
-
-;; Avoid whitespace cleaning
-(push 'clojure-mode live-ignore-whitespace-modes)
 
 ;; popwin
 (push "*cider-apropos*" popwin:special-display-config)
@@ -75,6 +77,10 @@
 ;; (push 'cider-repl-mode popwin:special-display-config)
 ;; (push 'cider-connection-list-mode popwin:special-display-config)
 
+;; Magit warnings
+(setq magit-last-seen-setup-instructions "2.1.0")
+(setq magit-auto-revert-mode nil)
+
 ;; Load bindings and configs
 (live-load-config-file "bindings.el")
 (live-load-config-file "phi-search-conf.el")
@@ -87,6 +93,11 @@
 (live-load-config-file "restclient-conf.el")
 (live-load-config-file "midje-conf.el")
 (live-load-config-file "eval-in-repl-conf.el")
+
+;; flyspell
+(add-hook 'git-commit-mode-hook
+          (lambda ()
+            (flyspell-prog-mode)))
 
 ;; Load libs with no config
 (require 'xcopypaste)
