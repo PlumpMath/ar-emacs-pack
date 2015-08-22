@@ -4,23 +4,24 @@
 
 ;;; Fonts
 (set-face-attribute 'default nil :height 117)
-;;(set-default-font "Ubuntu Mono-12")
 
 ;;; No backups
 (setq make-backup-files nil) ; stop creating backup~ files
 (setq auto-save-default nil) ; stop creating #autosave# files
+
 (setq custom-file "~/.live-packs/ar-emacs-pack/custom-configuration.el")
 
 ;;; Misc
 (setq live-disable-zone t)
 (setq cua-enable-cua-keys t)
+(setq shift-select-mode t)
 (setq mouse-drag-copy-region t)
 (setq visible-bell t)
 
 ;;; Tabs and indent
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
-(setq-default fill-column 100)
+(setq-default fill-column 79)
 (setq-default truncate-lines t)
 (setq electric-indent-mode t)
 (setq ac-auto-start nil)
@@ -104,5 +105,4 @@
             (flyspell-mode)))
 
 ;; Load libs with no config
-(require 'xcopypaste)
 (require 'misc)
