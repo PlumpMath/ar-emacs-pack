@@ -1,3 +1,6 @@
+(require 'cider-grimoire)
+(require 'cider-test)
+
 ;; (setq cider-show-error-buffer nil)
 ;; (setq cider-show-error-buffer 'except-in-repl)
 (setq cider-show-error-buffer 'only-in-repl)
@@ -39,13 +42,6 @@
     (goto-char (point-max))
     (insert "(user/reset)")
     (cider-repl-return)))
-
-;; From https://github.com/stuartsierra/dotfiles
-(defun cider-refresh ()
-  (interactive)
-  (save-some-buffers t 'clj-file-p)
-  (cider-interactive-eval
-   "(require 'clojure.tools.namespace.repl) (clojure.tools.namespace.repl/refresh)"))
 
 (global-set-key (kbd "M-s-r") 'cider-refresh)
 (global-set-key (kbd "s-r") 'cider-repl-reset)
