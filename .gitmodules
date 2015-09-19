@@ -13,9 +13,6 @@
 [submodule "lib/projectile"]
 	path = lib/projectile
 	url = git@github.com:bbatsov/projectile.git
-[submodule "lib/dash.el"]
-	path = lib/dash.el
-	url = git@github.com:magnars/dash.el.git
 [submodule "lib/perspective-el"]
 	path = lib/perspective-el
 	url = git@github.com:nex3/perspective-el.git
