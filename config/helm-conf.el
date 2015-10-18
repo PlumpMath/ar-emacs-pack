@@ -34,12 +34,9 @@
 ;;; Code:
 (live-add-pack-lib "emacs-async")
 (live-add-pack-lib "helm")
-(live-add-pack-lib "helm-descbinds")
 (live-add-pack-lib "emacs-helm-ag")
 
 (require 'helm-config)
-(require 'helm-projectile)
-(require 'helm-everywhere)
 
 (when (executable-find "curl")
   (setq helm-google-suggest-use-curl-p t))

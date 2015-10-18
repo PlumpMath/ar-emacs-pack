@@ -1,8 +1,7 @@
-(live-add-pack-lib "dash.el")
 (live-add-pack-lib "projectile")
 
-(require 'dash)
 (require 'projectile)
+(require 'helm-projectile)
 
 (setq projectile-mode-line '(:eval (format " Prj[%s]" (projectile-project-name))))
 (setq projectile-enable-caching t)

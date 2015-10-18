@@ -1,6 +1,6 @@
-;;; prelude-helm-everywhere.el --- Enable Helm everywhere
+;;; helm-everywhere.el --- Enable Helm everywhere
 ;;
-;; Copyright © 2014 Tu, Do Hoang
+;; Copyright © 2014-2015 Tu, Do Hoang
 ;;
 ;; Author: Tu, Do Hoang (tuhdo1710@gmail.com)
 ;; URL: https://github.com/bbatsov/prelude
@@ -33,6 +33,7 @@
 ;; Boston, MA 02110-1301, USA.
 
 ;;; Code:
+(live-add-pack-lib "helm-descbinds")
 (require 'helm-descbinds)
 (require 'helm-ag)
 (require 'helm-eshell)
@@ -59,7 +60,7 @@
 
 (substitute-key-definition 'find-tag 'helm-etags-select global-map)
 (setq projectile-completion-system 'helm)
-(helm-descbinds-mode)
+(helm-descbinds-install)
 (helm-mode 1)
 
 ;; enable Helm version of Projectile with replacement commands
@@ -70,4 +71,4 @@
 (setq helm-ag-insert-at-point 'symbol)
 
 (provide 'helm-everywhere)
-;; prelude-helm-everywhere.el ends here.
+;; helm-everywhere.el ends here.
