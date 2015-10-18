@@ -104,5 +104,9 @@
           (lambda ()
             (flyspell-mode)))
 
+(add-hook 'markdown-mode-hook
+          (lambda ()
+            (flyspell-mode)))
+
 ;; Load libs with no config
 (require 'misc)
