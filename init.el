@@ -85,7 +85,6 @@
 ;; Load bindings and configs
 (live-load-config-file "bindings.el")
 (live-load-config-file "phi-search-conf.el")
-;; (live-load-config-file "column-indicator-conf.el")
 (live-load-config-file "helm-conf.el")
 (live-load-config-file "projectile-conf.el")
 (live-load-config-file "helm-everywhere.el")
@@ -95,6 +94,7 @@
 (live-load-config-file "clojure-conf.el")
 (live-load-config-file "midje-conf.el")
 (live-load-config-file "eval-in-repl-conf.el")
+(live-load-config-file "aggressive-indent-conf.el")
 
 ;; flyspell
 (add-hook 'git-commit-mode-hook
