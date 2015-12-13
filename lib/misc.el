@@ -16,7 +16,7 @@
                   (end-of-line)
                   (point))))
     (comment-or-uncomment-region start end))
-  (next-line))
+  (forward-line))
 
 ;; From: http://www.bytopia.org/2014/11/26/rename-clojure-symbol-in/
 (defun narrow-or-widen-dwim (p)
@@ -78,7 +78,7 @@
     ) ; end-of-let
 
   ;; put the point in the lowest line and return
-  (next-line arg))
+  (forward-line arg))
 
 (defun advanced-return (&optional arg)
   (interactive "P")
@@ -88,7 +88,7 @@
         ((equal arg '(4)) ;; C-u
          (end-of-line)
          (open-line 1)
-         (next-line))
+         (forward-line))
         (t ;; Otherwise
          (newline-and-indent))))
 
