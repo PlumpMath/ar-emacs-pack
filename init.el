@@ -9,7 +9,18 @@
 (setq make-backup-files nil) ; stop creating backup~ files
 (setq auto-save-default nil) ; stop creating #autosave# files
 
-(setq custom-file "~/.live-packs/ar-emacs-pack/custom-configuration.el")
+(message (concat "[ar-emacs-pack] Pack folder: " live-current-pack-dir))
+
+(setq custom-file (concat live-current-pack-dir "custom-configuration.el"))
+(message (concat "[ar-emacs-pack] Location of custom-configuration.el: " custom-file))
+;; Multiple cursors
+(setq mc/list-file (concat live-current-pack-dir "multiple-cursors-prefs.el"))
+(message (concat "[ar-emacs-pack] Multiple cursors file: " mc/list-file))
+;; Projectile
+(setq projectile-cache-file (concat live-current-pack-dir "projectile.cache"))
+(setq projectile-known-projects-file (concat live-current-pack-dir "projectile-bookmarks.eld"))
+(message (concat "[ar-emacs-pack] Projectile cache: " projectile-cache-file))
+(message (concat "[ar-emacs-pack] Projectile known projects file: " projectile-known-projects-file))
 
 ;;; Misc
 (setq live-disable-zone t)

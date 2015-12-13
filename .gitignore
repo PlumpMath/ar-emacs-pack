@@ -36,3 +36,6 @@ tramp
 
 # cask packages
 .cask/
+
+projectile-bookmarks.eld
+projectile.cache
