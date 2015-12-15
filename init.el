@@ -107,6 +107,7 @@
 (live-load-config-file "eval-in-repl-conf.el")
 (live-load-config-file "aggressive-indent-conf.el")
 (live-load-config-file "zeal-at-point-conf.el")
+(live-load-config-file "synosaurus-conf.el")
 
 ;; flyspell
 (add-hook 'git-commit-mode-hook
