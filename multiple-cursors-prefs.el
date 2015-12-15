@@ -4,8 +4,6 @@
 (setq mc/cmds-to-run-for-all
       '(
         cljr-slash
-        helm-M-x
-        kill-region
         live-paredit-forward-slurp-sexp-neatly
         paredit-doublequote
         paredit-forward-delete
@@ -15,6 +13,8 @@
 
 (setq mc/cmds-to-run-once
       '(
+        helm-M-x
+        kill-region
         beginning-of-buffer
         cua--prefix-override-handler
         cua-copy-region
