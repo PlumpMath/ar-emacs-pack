@@ -24,7 +24,9 @@
      (DELETE 2)
      (HEAD 2)
      (ANY 2)
-     (context 2)))
+     (context 2)
+     (async 'defun)
+     (eval-str 'defun)))
 
 (add-to-list 'auto-mode-alist '("\\.\\(cljc|cljs\\|dtm\\|edn\\)$" . clojure-mode))
 
