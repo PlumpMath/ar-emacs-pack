@@ -3,22 +3,9 @@
 
 (setq mc/cmds-to-run-for-all
       '(
-        cljr-slash
-        live-paredit-forward-slurp-sexp-neatly
-        paredit-doublequote
         paredit-forward-delete
-        paredit-kill
-        paredit-open-curly
         ))
 
 (setq mc/cmds-to-run-once
       '(
-        helm-M-x
-        kill-region
-        beginning-of-buffer
-        cua--prefix-override-handler
-        cua-copy-region
-        handle-switch-frame
-        helm-confirm-and-exit-minibuffer
-        ido-kill-buffer
         ))
