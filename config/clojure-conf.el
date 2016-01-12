@@ -26,9 +26,8 @@
      (ANY 2)
      (context 2)
      (async 'defun)
-     (eval-str 'defun)))
-
-(add-to-list 'auto-mode-alist '("\\.\\(cljc|cljs\\|dtm\\|edn\\)$" . clojure-mode))
+     (eval-str 'defun)
+     (deftask 'defun)))
 
 (live-add-pack-lib "clojure-snippets")
 (require 'clojure-snippets)
