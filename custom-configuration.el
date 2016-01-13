@@ -15,6 +15,7 @@
  '(haskell-process-type (quote ghci))
  '(haskell-stylish-on-save t)
  '(haskell-tags-on-save t)
+ '(org-agenda-files nil)
  '(safe-local-variable-values
    (quote
     ((clojure-mode
@@ -51,7 +52,8 @@
      (projectile-grep-default-files quote
                                     ("*.clj" "*.java")))))
  '(sclang-auto-scroll-post-buffer t)
- '(sclang-eval-line-forward nil))
+ '(sclang-eval-line-forward nil)
+ '(send-mail-function (quote mailclient-send-it)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

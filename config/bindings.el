@@ -24,6 +24,20 @@
 
 ; Some Intellj Idea bindings
 (global-set-key (kbd "C-y") 'kill-whole-line)
+(eval-after-load "org"
+  (lambda ()
+    ;; (local-set-key "\M-n" 'outline-next-visible-heading)
+    ;; (local-set-key "\M-p" 'outline-previous-visible-heading)
+    ;; table
+    ;; (define-key org-mode-map "\C-\M-w" 'org-table-copy-region)
+    ;; (define-key org-mode-map "\C-\M-y" 'org-table-paste-rectangle)
+    ;; (define-key org-mode-map "\C-\M-l" 'org-table-sort-lines)
+    ;; display images
+    ;; (local-set-key "\M-I" 'org-toggle-iimage-in-org)
+    ;; fix tab
+    (define-key org-mode-map "C-y" 'kill-whole-line)
+    (define-key org-mode-map "C-M-y" 'org-yank)))
+
 (global-set-key (kbd "C-w") 'er/expand-region)
 
 ;; auto-complete-mode
@@ -119,3 +133,31 @@
 (global-set-key (kbd "s-s") 'helm-projectile-ag)
 (global-set-key (kbd "s-g") 'helm-projectile-grep)
 (global-set-key (kbd "s-t") 'projectile-toggle-between-implementation-and-test)
+
+;; Org
+(global-set-key (kbd "C-c l") 'org-store-link)
+(global-set-key (kbd "C-c a") 'org-agenda)
+(global-set-key (kbd "C-c c") 'org-capture)
+
+(eval-after-load "org"
+  '(progn
+     (define-prefix-command 'org-todo-state-map)
+
+     (define-key org-mode-map "\C-cx" 'org-todo-state-map)
+
+     (define-key org-todo-state-map "x"
+       #'(lambda nil (interactive) (org-todo "CANCELLED")))
+     (define-key org-todo-state-map "d"
+       #'(lambda nil (interactive) (org-todo "DONE")))
+     (define-key org-todo-state-map "h"
+       #'(lambda nil (interactive) (org-todo "HOLD")))
+     (define-key org-todo-state-map "n"
+       #'(lambda nil (interactive) (org-todo "NEXT")))
+     ;; (define-key org-todo-state-map "f"
+     ;; #'(lambda nil (interactive) (org-todo "DEFERRED")))
+     ;; (define-key org-todo-state-map "l"
+     ;; #'(lambda nil (interactive) (org-todo "DELEGATED")))
+     (define-key org-todo-state-map "s"
+       #'(lambda nil (interactive) (org-todo "STARTED")))
+     (define-key org-todo-state-map "w"
+       #'(lambda nil (interactive) (org-todo "WAITING")))))

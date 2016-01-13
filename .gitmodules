@@ -49,3 +49,6 @@
 [submodule "lib/eval-in-repl"]
 	path = lib/eval-in-repl
 	url = git@github.com:kaz-yos/eval-in-repl.git
+[submodule "lib/ar-org"]
+	path = lib/ar-org
+	url = git@github.com:arichiardi/ar-org.git
