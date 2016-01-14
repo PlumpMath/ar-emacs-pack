@@ -1,6 +1,12 @@
 (require 'org)
 
 (add-hook 'org-mode-hook 'org-indent-mode) ;; indenting
+(add-hook 'org-mode-hook
+          (lambda ()
+            ;; yasnippet fix from:
+            ;; http://orgmode.org/manual/Conflicts.html
+            (org-set-local 'yas/trigger-key [tab])
+            (define-key yas/keymap [tab] 'yas/next-field-or-maybe-expand)))
 
 ;; http://orgmode.org/worg/org-configs/org-customization-guide.html
 ;; https://github.com/robertutterback/config/blob/master/emacs/org-mode.org
@@ -23,6 +29,7 @@
 ;;;;;;;;;;;;;;
 ;;  Refile  ;;
 ;;;;;;;;;;;;;;
+
 (setq org-refile-targets
       '((nil :maxlevel . 3)
         (org-agenda-files :maxlevel . 3)))
@@ -41,6 +48,7 @@
 ;;;;;;;;;;;;;;;;;
 ;;;  Capture  ;;;
 ;;;;;;;;;;;;;;;;;
+
 (setq org-capture-templates
       '(("a" "Article/video to read/watch"
          entry
@@ -113,11 +121,13 @@
 ;;;;;;;;;;;;
 ;;  TAGS  ;;
 ;;;;;;;;;;;;
+
 (setq org-use-tag-inheritance t)
 
 ;;;;;;;;;;;;;;;;
 ;;  KEYWORDS  ;;
 ;;;;;;;;;;;;;;;;
+
 (setq org-todo-keywords
       (quote ((sequence "TODO(t)" "NEXT(n)" "STARTED(s)" "|" "DONE(d)")
               (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)"))))
@@ -142,9 +152,33 @@
               ("STARTED" ("WAITING") ("CANCELLED") ("HOLD") ("NEXT"))
               ("DONE" ("WAITING") ("CANCELLED") ("HOLD")))))
 
+(eval-after-load "org"
+  '(progn
+     (define-prefix-command 'org-todo-state-map)
+
+     (define-key org-mode-map "\C-cx" 'org-todo-state-map)
+
+     (define-key org-todo-state-map "x"
+       #'(lambda nil (interactive) (org-todo "CANCELLED")))
+     (define-key org-todo-state-map "d"
+       #'(lambda nil (interactive) (org-todo "DONE")))
+     (define-key org-todo-state-map "h"
+       #'(lambda nil (interactive) (org-todo "HOLD")))
+     (define-key org-todo-state-map "n"
+       #'(lambda nil (interactive) (org-todo "NEXT")))
+     ;; (define-key org-todo-state-map "f"
+     ;; #'(lambda nil (interactive) (org-todo "DEFERRED")))
+     ;; (define-key org-todo-state-map "l"
+     ;; #'(lambda nil (interactive) (org-todo "DELEGATED")))
+     (define-key org-todo-state-map "s"
+       #'(lambda nil (interactive) (org-todo "STARTED")))
+     (define-key org-todo-state-map "w"
+       #'(lambda nil (interactive) (org-todo "WAITING")))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;
 ;;;  CLOCK - TIMER  ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;
+
 (setq org-clock-in-resume t)
 (setq org-clock-persist 'history)
 (setq org-clock-report-include-clocking-task t)
@@ -155,7 +189,7 @@
 ;; (setq org-clock-persist-query-resume nil)
 ;; (setq org-clock-in-switch-to-state "STARTED")
 
-;; Auto clock-in on IN-PROGRESS
+;; Auto clock-in on STARTED
 (defun auto-todo-state-change ()
   (cond ((string-equal org-state "STARTED") (org-clock-in))
         ((and (not (string-equal org-state "STARTED"))
