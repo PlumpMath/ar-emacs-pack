@@ -120,7 +120,7 @@
 (global-set-key (kbd "s-.") 'projectile-find-tag)
 (global-set-key (kbd "s-s") 'helm-projectile-ag)
 (global-set-key (kbd "s-g") 'helm-projectile-grep)
-(global-set-key (kbd "s-t") 'projectile-toggle-between-implementation-and-test)
+(global-set-key (kbd "s-M-t") 'projectile-toggle-between-implementation-and-test)
 
 ;; Zeal
 (define-key cider-doc-map (kbd "z") 'zeal-at-point)
