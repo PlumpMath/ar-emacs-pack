@@ -61,3 +61,12 @@
 [submodule "lib/f.el"]
 	path = lib/f.el
 	url = git@github.com:rejeep/f.el.git
+[submodule "Fill-Column-Indicator"]
+	path = Fill-Column-Indicator
+	url = git@github.com:alpaker/Fill-Column-Indicator.git
+[submodule "aggressive-indent-mode"]
+	path = aggressive-indent-mode
+	url = git@github.com:Malabarba/aggressive-indent-mode.git
+[submodule "browse-at-remote"]
+	path = browse-at-remote
+	url = git@github.com:rmuslimov/browse-at-remote.git
