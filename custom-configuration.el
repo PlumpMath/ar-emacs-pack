@@ -15,7 +15,6 @@
  '(haskell-process-type (quote ghci))
  '(haskell-stylish-on-save t)
  '(haskell-tags-on-save t)
- '(org-agenda-files nil)
  '(safe-local-variable-values
    (quote
     ((clojure-mode
