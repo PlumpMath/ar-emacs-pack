@@ -98,8 +98,10 @@
 ;; gracefully kill emacs --daemon
 (global-set-key (kbd "C-x C-M-c") 'save-buffers-kill-emacs)
 
-;; magit shortcuts
+;; (ma)git shortcuts
 (global-set-key (kbd "C-c d s") 'magit-diff-staged)
+(global-set-key (kbd "C-c g b") 'browse-at-remote/browse)
+(global-set-key (kbd "C-c g c") 'browse-at-remote/kill)
 
 ;; git-gutter shortcuts
 (global-set-key (kbd "C-c g u") 'git-gutter:update-all-windows)

@@ -110,6 +110,7 @@
 (live-load-config-file "synosaurus-conf.el")
 (live-load-config-file "org-conf.el")
 (live-load-config-file "key-override-conf.el")
+(live-load-config-file "git-conf.el")
 
 ;; flyspell
 (add-hook 'git-commit-mode-hook
