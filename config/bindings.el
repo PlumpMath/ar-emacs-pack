@@ -72,7 +72,10 @@
 ;; C-c t custom group emacs live - text shortcuts
 (global-set-key (kbd "C-c t m a") 'mc/mark-all-like-this-dwim)
 (global-set-key (kbd "C-c t d l") 'duplicate-line)
+(global-set-key (kbd "C-c t d s") 'paredit-duplicate-closest-sexp)
+ ;; better twice because I often forget
 (global-set-key (kbd "C-c t t s") 'clojure-toggle-keyword-string)
+(global-set-key (kbd "C-c t t k") 'clojure-toggle-keyword-string)
 
 ;;; phi-search
 (global-set-key (kbd "C-s") 'phi-search)
@@ -93,13 +96,15 @@
   '(progn
      (define-key paredit-mode-map (kbd "C-h") 'help-command)
      (define-key paredit-mode-map (kbd "C-)") 'live-paredit-forward-slurp-sexp-neatly)
-     (define-key paredit-mode-map (kbd "C-<right>") 'live-paredit-forward-slurp-sexp-neatly)))
+     (define-key paredit-mode-map (kbd "C-<right>") 'live-paredit-forward-slurp-sexp-neatly)
+     (define-key paredit-mode-map (kbd "M-)") 'paredit-wrap-round-from-behind)))
 
 ;; gracefully kill emacs --daemon
 (global-set-key (kbd "C-x C-M-c") 'save-buffers-kill-emacs)
 
 ;; (ma)git shortcuts
 (global-set-key (kbd "C-c d s") 'magit-diff-staged)
+(define-key magit-status-mode-map (kbd "q") 'magit-quit-session)
 (global-set-key (kbd "C-c g b") 'browse-at-remote/browse)
 (global-set-key (kbd "C-c g c") 'browse-at-remote/kill)
 
