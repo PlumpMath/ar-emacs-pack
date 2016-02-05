@@ -1,20 +1,14 @@
-(require 'org)
+(require 'org-protocol)
 
 (add-hook 'org-mode-hook 'org-indent-mode) ;; indenting
-(add-hook 'org-mode-hook
-          (lambda ()
-            ;; yasnippet fix from:
-            ;; http://orgmode.org/manual/Conflicts.html
-            (org-set-local 'yas/trigger-key [tab])
-            (define-key yas/keymap [tab] 'yas/next-field-or-maybe-expand)))
 
 ;; http://orgmode.org/worg/org-configs/org-customization-guide.html
 ;; https://github.com/robertutterback/config/blob/master/emacs/org-mode.org
 ;; http://www.newartisans.com/2007/08/using-org-mode-as-a-day-planner/
 
-(setq org-directory (concat (live-pack-lib-dir) "ar-org"))
+(setq org-directory (concat "~/git/" "ar-org"))
 (setq org-default-notes-file (concat org-directory "/agenda/notes.org.gpg"))
-(setq org-archive-location (concat org-directory "/archive/archive.org.gpg"))
+(setq org-archive-location (concat org-directory "/archive/archive.org.gpg" "::datetree/* From %s")) ;; Filename::heading
 (setq org-agenda-files (list (concat org-directory "/agenda/notes.org.gpg")
                              (concat org-directory "/agenda/work.org.gpg")
                              (concat org-directory "/agenda/home.org.gpg")))
@@ -25,22 +19,23 @@
 (setq org-return-follows-link t)
 (setq org-log-done t)
 (setq org-fast-tag-selection-single-key 'expert)
+(setq org-catch-invisible-edits 'show)
 
 ;;;;;;;;;;;;;;
 ;;  Refile  ;;
 ;;;;;;;;;;;;;;
 
-(setq org-refile-targets
-      '((nil :maxlevel . 3)
-        (org-agenda-files :maxlevel . 3)))
+;; (setq org-refile-targets
+;; '((nil :maxlevel . 2)
+;; (org-agenda-files :maxlevel . 2)))
 
-;; (defun get-open-org-file ()
-;; (buffer-file-name
-;; (get-buffer
-;; (org-icompleting-read "Buffer: "
-;; (mapcar 'buffer-name
-;; (org-buffer-list 'files))))))
-;; (setq org-refile-targets '((get-open-org-file . (:maxlevel . 2))))
+(defun get-open-org-file ()
+(buffer-file-name
+(get-buffer
+ (org-icompleting-read "Buffer: "
+                       (mapcar 'buffer-name
+                               (org-buffer-list 'files))))))
+(setq org-refile-targets '((get-open-org-file . (:maxlevel . 2))))
 
 (setq org-refile-use-outline-path 'file)
 (setq org-completion-use-ido t)
@@ -104,8 +99,8 @@
 (setq org-agenda-custom-commands
       (quote (("c" todo "DONE|CANCELLED" nil)
               ("w" todo "WAITING" nil)
-              ("L" agenda "" ((org-agenda-ndays 21)))
-              ("A" agenda ""
+              ("A" agenda "" ((org-agenda-ndays 21)))
+              ("P" agenda ""
                ((org-agenda-skip-function
                  (lambda nil
                    (org-agenda-skip-entry-if (quote notregexp) "\\=.*\\[#A\\]")))
@@ -200,36 +195,21 @@
 
 ;; http://article.gmane.org/gmane.emacs.orgmode/3629
 
+
 (defvar org-my-archive-expiry-days 7
   "The number of days after which a completed task should be auto-archived.
 This can be 0 for immediate, or a floating point value.")
 
-(defun org-my-archive-done-tasks ()
+;; http://stackoverflow.com/a/27048241
+(setq org-loop-over-headlines-in-active-region 'start-level)
+
+(defun org-archive-done-tasks ()
   (interactive)
-  (save-excursion
-    (goto-char (point-min))
-    (let ((done-regexp
-           (concat "\\* \\(" (regexp-opt org-done-keywords) "\\) "))
-          (state-regexp
-           (concat "- State \"\\(" (regexp-opt org-done-keywords)
-                   "\\)\"\\s-*\\[\\([^]\n]+\\)\\]")))
-      (while (re-search-forward done-regexp nil t)
-        (let ((end (save-excursion
-                     (outline-next-heading)
-                     (point)))
-              begin)
-          (goto-char (line-beginning-position))
-          (setq begin (point))
-          (if (re-search-forward state-regexp end t)
-              (let* ((time-string (match-string 2))
-                     (when-closed (org-parse-time-string time-string)))
-                (if (>= (time-to-number-of-days
-                         (time-subtract (current-time)
-                                        (apply #'encode-time when-closed)))
-                        org-my-archive-expiry-days)
-                    (org-archive-subtree)))
-            (goto-char end)))))
-    (save-buffer)))
+  (org-map-entries
+   (lambda ()
+     (org-archive-subtree)
+     (setq org-map-continue-from (outline-previous-heading)))
+   "/DONE" 'file))
 
 ;; AR- Not active yet
 ;; (setq safe-local-variable-values (quote ((after-save-hook archive-done-tasks))))
