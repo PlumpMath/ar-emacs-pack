@@ -36,13 +36,18 @@
 
 ;; (global-set-key (kbd "C-c r") 'nrepl-reset)
 
+(defcustom cider-repl-reset-cmd "(user/reset)"
+  "A sexp string that triggers Repl reset. Used by `cider-repl-reset'."
+  :type 'string
+  :group 'cider)
+
 ;; From https://github.com/juxt/jig
 (defun cider-repl-reset ()
   (interactive)
   (save-some-buffers)
   (with-current-buffer (cider-current-repl-buffer)
     (goto-char (point-max))
-    (insert "(user/reset)")
+    (insert cider-repl-reset-cmd)
     (cider-repl-return)))
 
 (defun cider-figwheel-repl ()
