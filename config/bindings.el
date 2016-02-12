@@ -106,7 +106,7 @@
 (global-set-key (kbd "C-c d s") 'magit-diff-staged)
 (define-key magit-status-mode-map (kbd "q") 'magit-quit-session)
 (global-set-key (kbd "C-c g b") 'browse-at-remote/browse)
-(global-set-key (kbd "C-c g c") 'browse-at-remote/kill)
+(global-set-key (kbd "C-c g k") 'browse-at-remote/kill)
 
 ;; git-gutter shortcuts
 (global-set-key (kbd "C-c g u") 'git-gutter:update-all-windows)
