@@ -3,11 +3,9 @@
 
 (setq mc/cmds-to-run-for-all
       '(
-        live-paredit-forward-slurp-sexp-neatly
         paredit-forward-delete
         ))
 
 (setq mc/cmds-to-run-once
       '(
-        handle-switch-frame
         ))

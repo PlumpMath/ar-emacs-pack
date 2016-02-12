@@ -17,7 +17,8 @@
  '(haskell-tags-on-save t)
  '(safe-local-variable-values
    (quote
-    ((clojure-mode
+    ((cider-repl-reset-cmd . "(lambdax-web.dev/reset)")
+     (clojure-mode
       (eval aggressive-indent-mode -1))
      (eval add-to-list
            (quote aggressive-indent-excluded-modes)
