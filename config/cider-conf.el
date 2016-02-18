@@ -9,6 +9,7 @@
 (setq cider-stacktrace-fill-column 100)
 (setq cider-repl-history-size 1000)
 (setq cider-prompt-for-project-on-connect nil)
+(setq cider-repl-display-help-banner nil)
 
 ;; Known hosts
 (setq cider-known-endpoints '(("localhost" "5055") ("localhost" "5088")))
