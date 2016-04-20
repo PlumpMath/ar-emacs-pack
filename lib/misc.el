@@ -288,6 +288,11 @@
   (kill-buffer)
   (jump-to-register :magit-fullscreen))
 
+(defun paredit-kill-parent-sexp (&optional arg)
+  (interactive)
+  (paredit-backward-up)
+  (kill-sexp (or arg 1)))
+
 (provide 'misc)
 
 ;;; misc.el ends here

@@ -1,5 +1,6 @@
 (require 'cider-grimoire)
 (require 'cider-test)
+(require 'eval-in-repl-cider)
 
 ;; (setq cider-show-error-buffer nil)
 ;; (setq cider-show-error-buffer 'except-in-repl)
@@ -10,6 +11,8 @@
 (setq cider-repl-history-size 1000)
 (setq cider-prompt-for-project-on-connect nil)
 (setq cider-repl-display-help-banner nil)
+(setq cider-connection-message-fn 'cider-random-tip)
+(setq cider-use-tooltips nil)
 
 ;; Known hosts
 (setq cider-known-endpoints '(("localhost" "5055") ("localhost" "5088")))
@@ -25,17 +28,6 @@
   '(progn
      (add-to-list 'ac-modes 'cider-mode)
      (add-to-list 'ac-modes 'cider-repl-mode)))
-
-;; From https://github.com/juxt/jig
-;; (defun nrepl-reset ()
-;;   (interactive)
-;;   (save-some-buffers)
-;;   (set-buffer "*nrepl*")
-;;   (goto-char (point-max))
-;;   (insert "(user/reset)")
-;;   (nrepl-return))
-
-;; (global-set-key (kbd "C-c r") 'nrepl-reset)
 
 (defcustom cider-repl-reset-cmd "(user/reset)"
   "A sexp string that triggers Repl reset. Used by `cider-repl-reset'."
@@ -75,13 +67,15 @@
 (global-set-key (kbd "C-c r b") 'cider-boot-cljs-repl)
 
 ;; From http://emacsredux.com/blog/2013/09/25/removing-key-bindings-from-minor-mode-keymaps/
-
 (defun custom-cider-mode-hook ()
   (let ((oldmap (cdr (assoc 'cider-mode minor-mode-map-alist)))
         (newmap (make-sparse-keymap)))
     (set-keymap-parent newmap oldmap)
+
     (define-key newmap (kbd "C-c C-z") nil)
     (define-key newmap (kbd "C-c C-a") 'cider-switch-to-repl-buffer)
+    (define-key newmap (kbd "C-M-x") 'eir-eval-in-cider)
+
     (make-local-variable 'minor-mode-overriding-map-alist)
     (push `(cider-mode . ,newmap) minor-mode-overriding-map-alist)))
 

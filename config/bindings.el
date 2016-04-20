@@ -19,10 +19,9 @@
 (global-set-key (kbd "C-v") 'cua-paste)
 (global-set-key (kbd "C-c C-o") 'delete-blank-lines)
 (global-set-key (kbd "RET") 'advanced-return)
-(global-set-key (kbd "s-t") 'transpose-lines)
-(global-set-key "\033[32;74~" 'transpose-lines)
+(global-set-key (kbd "M-[ M-DEL") 'paredit-kill-parent-sexp)
 
-; Some Intellj Idea bindings
+;; Some Intellj Idea bindings
 (global-set-key (kbd "C-y") 'kill-whole-line)
 (global-set-key (kbd "C-w") 'er/expand-region)
 
@@ -49,7 +48,6 @@
 (cljr-add-keybindings-with-prefix "C-c r")
 (global-set-key (kbd "C-M-[") 'cljr-cycle-coll)
 (global-set-key (kbd "C-M-]") 'cljr-promote-function)
-(global-set-key (kbd "C->") 'cljr-cycle-privacy)
 
 ;;; C-c w custom group for windows
 (global-set-key (kbd "C-c w t") 'toggle-window-split)
@@ -96,9 +94,12 @@
 (eval-after-load 'paredit
   '(progn
      (define-key paredit-mode-map (kbd "C-h") 'help-command)
-     (define-key paredit-mode-map (kbd "C-)") 'live-paredit-forward-slurp-sexp-neatly)
+     (define-key paredit-mode-map (kbd "M-(") 'paredit-wrap-round)
+     (define-key paredit-mode-map (kbd "M-)") 'paredit-wrap-round-from-behind)
      (define-key paredit-mode-map (kbd "C-<right>") 'live-paredit-forward-slurp-sexp-neatly)
-     (define-key paredit-mode-map (kbd "M-)") 'paredit-wrap-round-from-behind)))
+     (define-key paredit-mode-map (kbd "C-<up>") 'live-paredit-previous-top-level-form)
+     (define-key paredit-mode-map (kbd "C-<down>") 'live-paredit-next-top-level-form)
+     (define-key paredit-mode-map (kbd "M-SPC ") 'live-paredit-tidy-trailing-parens)))
 
 ;; Rebind Smartparens
 ;; Also check
