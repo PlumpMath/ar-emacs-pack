@@ -16,17 +16,17 @@
 ;;(define-key Info-mode-map (kbd "C-M-x") 'eir-eval-in-ielm)
 
 ;; cider support (for Clojure)
-(require 'cider) ; if not done elsewhere
-(require 'eval-in-repl-cider)
-;; (define-key clojure-mode-map (kbd "C-M-x") 'eir-eval-in-cider)
-(define-key cider-mode-map (kbd "C-M-x") 'eir-eval-in-cider)
+;; (require 'cider) ; if not done elsewhere
+;; (require 'eval-in-repl-cider)
+;; (define-key clojure-mode-map (kbd "<C-return>") 'eir-eval-in-cider)
+
 
 ;; SLIME support (for Common Lisp)
 ;; (require 'slime) ; if not done elsewhere
 ;; (require 'eval-in-repl-slime)
 ;; (add-hook 'lisp-mode-hook
-          ;; '(lambda ()
-             ;; (local-set-key (kbd "<C-return>") 'eir-eval-in-slime)))
+;; '(lambda ()
+;; (local-set-key (kbd "<C-return>") 'eir-eval-in-slime)))
 
 ;; Geiser support (for Racket and Guile Scheme)
 ;; When using this, turn off racket-mode and scheme supports
@@ -80,10 +80,22 @@
 ;; function to send a semicolon to OCaml REPL
 ;; (define-key tuareg-mode-map (kbd "C-;") 'eir-send-to-ocaml-semicolon)
 
-
 ;; Shell support
-;; (require 'essh) ; if not done elsewhere
-;; (require 'eval-in-repl-shell)
+(require 'eval-in-repl-shell)
+(add-hook 'sh-mode-hook
+          '(lambda()
+             (local-set-key (kbd "C-M-x") 'eir-eval-in-shell)))
+
+;; Version with opposite behavior to eir-jump-after-eval configuration
+;; (defun eir-eval-in-shell2 ()
+;;   "eval-in-repl for shell script (opposite behavior)
+
+;; This version has the opposite behavior to the eir-jump-after-eval
+;; configuration when invoked to evaluate a line."
+;;   (interactive)
+;;   (let ((eir-jump-after-eval (not eir-jump-after-eval)))
+;;     (eir-eval-in-shell)))
+
 ;; (add-hook 'sh-mode-hook
-          ;; '(lambda()
-         ;; (local-set-key (kbd "C-<return>") 'eir-eval-in-shell)))
+;;           '(lambda()
+;;              (local-set-key (kbd "C-M-<return>") 'eir-eval-in-shell2)))

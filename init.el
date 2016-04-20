@@ -85,6 +85,7 @@
 (push "*cider-doc*" popwin:special-display-config)
 (push '("*cider-compilation*" :noselect t) popwin:special-display-config)
 (push '("*git-gutter:diff*" :noselect t) popwin:special-display-config)
+(push '("*Geiser dbg*" :noselect t) popwin:special-display-config)
 ;; (push '(sldb-mode :stick t) popwin:special-display-config)
 ;; (push 'cider-repl-mode popwin:special-display-config)
 ;; (push 'cider-connection-list-mode popwin:special-display-config)
@@ -100,17 +101,19 @@
 (live-load-config-file "projectile-conf.el")
 (live-load-config-file "helm-everywhere.el")
 (live-load-config-file "perspective-conf.el")
+(live-load-config-file "smartparens-conf.el")
+(live-load-config-file "eval-in-repl-conf.el")
 (live-load-config-file "restclient-conf.el")
 (live-load-config-file "cider-conf.el")
 (live-load-config-file "clojure-conf.el")
 (live-load-config-file "midje-conf.el")
-(live-load-config-file "eval-in-repl-conf.el")
 (live-load-config-file "aggressive-indent-conf.el")
 (live-load-config-file "zeal-at-point-conf.el")
 (live-load-config-file "synosaurus-conf.el")
 (live-load-config-file "org-conf.el")
 (live-load-config-file "key-override-conf.el")
 (live-load-config-file "git-conf.el")
+(live-load-config-file "racket-conf.el")
 
 ;; flyspell
 (add-hook 'git-commit-mode-hook

@@ -91,6 +91,7 @@
 (global-set-key (kbd "C-M-.") 'prelude-goto-symbol)
 (define-key cider-mode-map (kbd "C-c M-x") 'cider-eval-sexp-at-point-in-repl)
 
+
 ;; Rebind Paredit
 (eval-after-load 'paredit
   '(progn
@@ -98,6 +99,17 @@
      (define-key paredit-mode-map (kbd "C-)") 'live-paredit-forward-slurp-sexp-neatly)
      (define-key paredit-mode-map (kbd "C-<right>") 'live-paredit-forward-slurp-sexp-neatly)
      (define-key paredit-mode-map (kbd "M-)") 'paredit-wrap-round-from-behind)))
+
+;; Rebind Smartparens
+;; Also check
+;; https://ebzzry.github.io/emacs-pairs.html
+;; https://github.com/Fuco1/.emacs.d/blob/master/files/smartparens.el
+(eval-after-load 'smartparens
+  '(progn
+     (define-key smartparens-mode-map (kbd "C-<right>") 'sp-forward-slurp-sexp)
+     (define-key smartparens-mode-map (kbd "M-<rigth>") 'sp-backward-slurp-sexp)
+     (define-key smartparens-mode-map (kbd "C-<left>") 'sp-backward-slurp-sexp)
+     (define-key smartparens-mode-map (kbd "M-<left>") 'sp-backward-barf-sexp)))
 
 ;; gracefully kill emacs --daemon
 (global-set-key (kbd "C-x C-M-c") 'save-buffers-kill-emacs)

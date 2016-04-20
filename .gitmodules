@@ -61,3 +61,12 @@
 [submodule "lib/f.el"]
 	path = lib/f.el
 	url = git@github.com:rejeep/f.el.git
+[submodule "lib/geiser"]
+	path = lib/geiser
+	url = git://git.sv.gnu.org/geiser.git
+[submodule "lib/ac-geiser"]
+	path = lib/ac-geiser
+	url = https://github.com/xiaohanyu/ac-geiser
+[submodule "lib/smartparens"]
+	path = lib/smartparens
+	url = https://github.com/Fuco1/smartparens.git
