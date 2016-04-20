@@ -40,3 +40,6 @@ tramp
 # projectile
 projectile-bookmarks.eld
 projectile.cache
+
+custom-configuration.el
+multiple-cursors-prefs.el
