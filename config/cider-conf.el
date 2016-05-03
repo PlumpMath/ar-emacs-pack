@@ -29,7 +29,7 @@
      (add-to-list 'ac-modes 'cider-mode)
      (add-to-list 'ac-modes 'cider-repl-mode)))
 
-(defcustom cider-repl-reset-cmd "(user/reset)"
+(defcustom cider-repl-reset-cmd "(dev/reset)"
   "A sexp string that triggers Repl reset. Used by `cider-repl-reset'."
   :type 'string
   :group 'cider)
