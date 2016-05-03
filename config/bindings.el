@@ -97,8 +97,8 @@
      (define-key paredit-mode-map (kbd "M-(") 'paredit-wrap-round)
      (define-key paredit-mode-map (kbd "M-)") 'paredit-wrap-round-from-behind)
      (define-key paredit-mode-map (kbd "C-<right>") 'live-paredit-forward-slurp-sexp-neatly)
-     (define-key paredit-mode-map (kbd "C-<up>") 'live-paredit-previous-top-level-form)
-     (define-key paredit-mode-map (kbd "C-<down>") 'live-paredit-next-top-level-form)
+     (define-key paredit-mode-map (kbd "M-<up>") 'live-paredit-previous-top-level-form)
+     (define-key paredit-mode-map (kbd "M-<down>") 'live-paredit-next-top-level-form)
      (define-key paredit-mode-map (kbd "M-SPC ") 'live-paredit-tidy-trailing-parens)))
 
 ;; Rebind Smartparens
@@ -132,7 +132,6 @@
 ;; projectile
 (global-set-key (kbd "s-d") 'helm-projectile-find-dir)
 (global-set-key (kbd "s-p") 'projectile-persp-switch-project)
-;; (global-set-key (kbd "s-p") 'projectile-switch-project)
 (global-set-key (kbd "s-f") 'helm-projectile-find-file)
 (global-set-key (kbd "s-b") 'helm-projectile-switch-to-buffer)
 (global-set-key (kbd "s-.") 'projectile-find-tag)
