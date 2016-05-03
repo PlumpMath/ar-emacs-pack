@@ -117,6 +117,7 @@
 (live-load-config-file "org-conf.el")
 (live-load-config-file "key-override-conf.el")
 (live-load-config-file "git-conf.el")
+(live-load-config-file "html-css-conf.el")
 (live-load-config-file "racket-conf.el")
 
 ;; flyspell
