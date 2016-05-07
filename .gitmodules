@@ -73,3 +73,9 @@
 [submodule "lib/scss-mode"]
 	path = lib/scss-mode
 	url = git@github.com:antonj/scss-mode.git
+[submodule "lib/tagedit"]
+	path = lib/tagedit
+	url = git@github.com:magnars/tagedit.git
+[submodule "lib/string-edit.el"]
+	path = lib/string-edit.el
+	url = git@github.com:magnars/string-edit.el.git

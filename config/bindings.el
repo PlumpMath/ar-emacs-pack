@@ -1,5 +1,5 @@
 ;;
-;; AR config file
+;; AR key bindings file
 ;;
 
 ;; Define s-SPC, following:
@@ -43,6 +43,7 @@
 ;;; C-c custom commands
 (global-set-key (kbd "C-c r p p") 'cider-repl-use-pretty-printing)
 (global-set-key (kbd "C-c w c") 'whitespace-cleanup)
+(global-set-key (kbd "C-c s e") 'string-edit-at-point)
 
 ;;; clj-refactor - C-c r
 (cljr-add-keybindings-with-prefix "C-c r")
@@ -88,7 +89,6 @@
 (define-key clojure-mode-map (kbd "C-M-\\") 'live-delete-whitespace-except-one)
 (global-set-key (kbd "C-M-.") 'prelude-goto-symbol)
 (define-key cider-mode-map (kbd "C-c M-x") 'cider-eval-sexp-at-point-in-repl)
-
 
 ;; Rebind Paredit
 (eval-after-load 'paredit
