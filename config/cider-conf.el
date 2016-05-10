@@ -61,8 +61,17 @@
     (insert "((eval 'adzerk.boot-cljs-repl/start-repl))")
     (cider-repl-return)))
 
+(defun cider-repl-reload-dev ()
+  (interactive)
+  (save-some-buffers)
+  (with-current-buffer (cider-current-repl-buffer)
+    (goto-char (point-max))
+    (insert "(require 'dev :reload)")
+    (cider-repl-return)))
+
 (global-set-key (kbd "M-s-r") 'cider-refresh)
 (global-set-key (kbd "s-r") 'cider-repl-reset)
+(global-set-key (kbd "C-c r d") 'cider-repl-reload-dev)
 (global-set-key (kbd "C-c r f") 'cider-figwheel-repl)
 (global-set-key (kbd "C-c r b") 'cider-boot-cljs-repl)
 
