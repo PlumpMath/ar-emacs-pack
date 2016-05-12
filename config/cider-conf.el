@@ -69,9 +69,18 @@
     (insert "(require 'dev :reload)")
     (cider-repl-return)))
 
+(defun cider-repl-in-ns-dev ()
+  (interactive)
+  (save-some-buffers)
+  (with-current-buffer (cider-current-repl-buffer)
+    (goto-char (point-max))
+    (insert "(in-ns 'dev)")
+    (cider-repl-return)))
+
 (global-set-key (kbd "M-s-r") 'cider-refresh)
 (global-set-key (kbd "s-r") 'cider-repl-reset)
-(global-set-key (kbd "C-c r d") 'cider-repl-reload-dev)
+(global-set-key (kbd "C-c r l") 'cider-repl-reload-dev)
+(global-set-key (kbd "C-c r d") 'cider-repl-in-ns-dev)
 (global-set-key (kbd "C-c r f") 'cider-figwheel-repl)
 (global-set-key (kbd "C-c r b") 'cider-boot-cljs-repl)
 
