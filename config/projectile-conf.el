@@ -1,7 +1,12 @@
 (live-add-pack-lib "projectile")
+(live-add-pack-lib "helm-projectile")
+(live-add-pack-lib "persp-projectile")
+(live-add-pack-lib "perspective-el")
 
 (require 'projectile)
 (require 'helm-projectile)
+(require 'perspective)
+(require 'persp-projectile)
 
 (setq projectile-mode-line '(:eval (format " Prj[%s]" (projectile-project-name))))
 (setq projectile-enable-caching t)
