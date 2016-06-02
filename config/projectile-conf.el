@@ -15,4 +15,5 @@
 (setq projectile-idle-timer-seconds 60)
 (setq projectile-create-missing-test-files t)
 
+(persp-mode)
 (projectile-global-mode)

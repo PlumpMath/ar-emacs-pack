@@ -5,9 +5,9 @@
 ;;; Fonts
 (set-face-attribute 'default nil :height 117)
 
-;;; No backups
-(setq make-backup-files nil) ; stop creating backup~ files
-(setq auto-save-default nil) ; stop creating #autosave# files
+(setq make-backup-files nil) ;; stop creating backup~ files
+(setq auto-save-default nil) ;; stop creating #autosave# files
+(setq create-lockfiles nil)  ;; stop having lockfiles
 
 (message (concat "[ar-emacs-pack] Pack folder: " live-current-pack-dir))
 
