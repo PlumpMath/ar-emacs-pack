@@ -30,7 +30,11 @@
      (deftask 'defun)
      (start 'defun)
      (stop 'defun)
-     (read-eval-call-test 'defun)))
+     (read-eval-call-test 'defun)
+     (alet 'defun)
+     (mlet 'defun)
+     (reghandler 'defun)
+     (regsub 'defun)))
 
 (live-add-pack-lib "clojure-snippets")
 (require 'clojure-snippets)
