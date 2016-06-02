@@ -29,8 +29,9 @@
      (add-to-list 'ac-modes 'cider-mode)
      (add-to-list 'ac-modes 'cider-repl-mode)))
 
-(defcustom cider-repl-reset-cmd "(dev/reset)"
-  "A sexp string that triggers Repl reset. Used by `cider-repl-reset'."
+(defcustom cider-repl-refresh-after 'dev/go
+  "Symbol of a function that will be executed after
+  clojure.tools.namespace.repl/refresh."
   :type 'string
   :group 'cider)
 
@@ -69,6 +70,16 @@
     (insert "(require 'dev :reload)")
     (cider-repl-return)))
 
+(defun cider-repl-refresh ()
+  (interactive)
+  (save-some-buffers)
+  (with-current-buffer (cider-current-repl-buffer)
+    (goto-char (point-max))
+    (insert (concat "(require 'clojure.tools.namespace.repl) "
+                    "(clojure.tools.namespace.repl/refresh :after "
+                    "'" (symbol-name cider-repl-refresh-after) ")"))
+    (cider-repl-return)))
+
 (defun cider-repl-in-ns-dev ()
   (interactive)
   (save-some-buffers)
@@ -77,8 +88,7 @@
     (insert "(in-ns 'dev)")
     (cider-repl-return)))
 
-(global-set-key (kbd "M-s-r") 'cider-refresh)
-(global-set-key (kbd "s-r") 'cider-repl-reset)
+(global-set-key (kbd "s-r") 'cider-repl-refresh)
 (global-set-key (kbd "C-c r l") 'cider-repl-reload-dev)
 (global-set-key (kbd "C-c r d") 'cider-repl-in-ns-dev)
 (global-set-key (kbd "C-c r f") 'cider-figwheel-repl)
