@@ -1,5 +1,23 @@
 (require 'org-protocol)
 
+;;;;;;;;;;;;;;;;;;
+;;  org-trello  ;;
+;;;;;;;;;;;;;;;;;;
+
+(live-add-pack-lib "org-trello")
+(live-add-pack-lib "emacs-request")
+(require 'org-trello)
+
+;; org-trello major mode for all .trello files
+(add-to-list 'auto-mode-alist '("\\.trello$" . org-mode))
+
+;; add a hook function to check if this is trello file, then activate the org-trello minor mode.
+(add-hook 'org-mode-hook
+          (lambda ()
+            (let ((filename (buffer-file-name (current-buffer))))
+              (when (and filename (string= "trello" (file-name-extension filename)))
+                (org-trello-mode)))))
+
 (add-hook 'org-mode-hook 'org-indent-mode) ;; indenting
 
 ;; http://orgmode.org/worg/org-configs/org-customization-guide.html
@@ -26,15 +44,15 @@
 ;;;;;;;;;;;;;;
 
 ;; (setq org-refile-targets
-;; '((nil :maxlevel . 2)
-;; (org-agenda-files :maxlevel . 2)))
+;;       '((nil :maxlevel . 2)
+;;         (org-agenda-files :maxlevel . 2)))
 
 (defun get-open-org-file ()
-(buffer-file-name
-(get-buffer
- (org-icompleting-read "Buffer: "
-                       (mapcar 'buffer-name
-                               (org-buffer-list 'files))))))
+  (buffer-file-name
+   (get-buffer
+    (org-icompleting-read "Buffer: "
+                          (mapcar 'buffer-name
+                                  (org-buffer-list 'files))))))
 (setq org-refile-targets '((get-open-org-file . (:maxlevel . 2))))
 
 (setq org-refile-use-outline-path 'file)
@@ -161,10 +179,6 @@
        #'(lambda nil (interactive) (org-todo "HOLD")))
      (define-key org-todo-state-map "n"
        #'(lambda nil (interactive) (org-todo "NEXT")))
-     ;; (define-key org-todo-state-map "f"
-     ;; #'(lambda nil (interactive) (org-todo "DEFERRED")))
-     ;; (define-key org-todo-state-map "l"
-     ;; #'(lambda nil (interactive) (org-todo "DELEGATED")))
      (define-key org-todo-state-map "s"
        #'(lambda nil (interactive) (org-todo "STARTED")))
      (define-key org-todo-state-map "w"
@@ -194,8 +208,6 @@
 (add-hook 'org-after-todo-state-change-hook 'auto-todo-state-change)
 
 ;; http://article.gmane.org/gmane.emacs.orgmode/3629
-
-
 (defvar org-my-archive-expiry-days 7
   "The number of days after which a completed task should be auto-archived.
 This can be 0 for immediate, or a floating point value.")

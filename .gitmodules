@@ -85,3 +85,9 @@
 [submodule "lib/persp-projectile"]
 	path = lib/persp-projectile
 	url = git@github.com:bbatsov/persp-projectile.git
+[submodule "lib/org-trello"]
+	path = lib/org-trello
+	url = git@github.com:org-trello/org-trello.git
+[submodule "lib/emacs-request"]
+	path = lib/emacs-request
+	url = https://github.com/tkf/emacs-request.git

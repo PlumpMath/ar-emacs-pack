@@ -69,12 +69,12 @@
 (global-set-key (kbd "s-SPC") 'set-rectangular-region-anchor)
 
 ;; C-c t custom group emacs live - text shortcuts
-(global-set-key (kbd "C-c t m a") 'mc/mark-all-like-this-dwim)
-(global-set-key (kbd "C-c t d l") 'duplicate-line)
-(global-set-key (kbd "C-c t d s") 'paredit-duplicate-closest-sexp)
+(global-set-key (kbd "C-c m a") 'mc/mark-all-like-this-dwim)
+(global-set-key (kbd "C-c d l") 'duplicate-line)
+(global-set-key (kbd "C-c d x") 'paredit-duplicate-closest-sexp)
  ;; better twice because I often forget
-(global-set-key (kbd "C-c t t s") 'clojure-toggle-keyword-string)
-(global-set-key (kbd "C-c t t k") 'clojure-toggle-keyword-string)
+(global-set-key (kbd "C-c t s") 'clojure-toggle-keyword-string)
+(global-set-key (kbd "C-c t k") 'clojure-toggle-keyword-string)
 
 ;;; phi-search
 (global-set-key (kbd "C-s") 'phi-search)
