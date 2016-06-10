@@ -13,9 +13,11 @@
 
 (setq custom-file (concat live-current-pack-dir "custom-configuration.el"))
 (message (concat "[ar-emacs-pack] Location of custom-configuration.el: " custom-file))
-;; Multiple cursors
-(setq mc/list-file (concat live-current-pack-dir "multiple-cursors-prefs.el"))
-(message (concat "[ar-emacs-pack] Multiple cursors file: " mc/list-file))
+
+;; Multiple cursors - cannot set this here because it is after the require!
+;; (setq mc/list-file (concat live-current-pack-dir "multiple-cursors-prefs.el"))
+;; (message (concat "[ar-emacs-pack] Multiple cursors file: " mc/list-file))
+
 ;; Projectile
 (setq projectile-cache-file (concat live-current-pack-dir "projectile.cache"))
 (setq projectile-known-projects-file (concat live-current-pack-dir "projectile-bookmarks.eld"))
