@@ -91,3 +91,6 @@
 [submodule "lib/emacs-request"]
 	path = lib/emacs-request
 	url = https://github.com/tkf/emacs-request.git
+[submodule "lib/golden-ratio.el"]
+	path = lib/golden-ratio.el
+	url = git@github.com:roman/golden-ratio.el.git
