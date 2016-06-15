@@ -35,15 +35,6 @@
   :type 'string
   :group 'cider)
 
-;; From https://github.com/juxt/jig
-(defun cider-repl-reset ()
-  (interactive)
-  (save-some-buffers)
-  (with-current-buffer (cider-current-repl-buffer)
-    (goto-char (point-max))
-    (insert cider-repl-reset-cmd)
-    (cider-repl-return)))
-
 (defun cider-figwheel-repl ()
   (interactive)
   (save-some-buffers)
