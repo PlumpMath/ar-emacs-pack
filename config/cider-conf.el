@@ -35,6 +35,12 @@
   :type 'string
   :group 'cider)
 
+(defcustom cider-repl-refresh-and-test-regex ".*-test$"
+  "String regex that will be used for fetching the tests from the
+  classpath after clojure.tools.namespace.repl/refresh."
+  :type 'string
+  :group 'cider)
+
 (defun cider-figwheel-repl ()
   (interactive)
   (save-some-buffers)
@@ -61,6 +67,23 @@
     (insert "(require 'dev :reload)")
     (cider-repl-return)))
 
+(defun cider-repl-refresh-and-test ()
+  (interactive)
+  (save-some-buffers)
+  (with-current-buffer (cider-current-repl-buffer)
+    (goto-char (point-max))
+    (insert (concat "(require 'clojure.tools.namespace.repl
+  'clojure.tools.namespace.find
+  'clojure.java.classpath) "
+                    "(clojure.tools.namespace.repl/refresh :after "
+                    "'" (symbol-name cider-repl-refresh-after) ") "
+                    "(let [test-namespaces (->> (clojure.java.classpath/classpath)
+   (clojure.tools.namespace.find/find-namespaces)
+   (filter #(re-find #\"" cider-repl-refresh-and-test-regex "\" (str %))))]
+     (run! require test-namespaces)
+     (apply test/run-tests test-namespaces))"))
+    (cider-repl-return)))
+
 (defun cider-repl-refresh ()
   (interactive)
   (save-some-buffers)
@@ -76,10 +99,11 @@
   (save-some-buffers)
   (with-current-buffer (cider-current-repl-buffer)
     (goto-char (point-max))
-    (insert "(in-ns 'dev)")
+    (insert "(require 'dev) (in-ns 'dev)")
     (cider-repl-return)))
 
 (global-set-key (kbd "s-r") 'cider-repl-refresh)
+(global-set-key (kbd "C-s-r") 'cider-repl-refresh-and-test)
 (global-set-key (kbd "C-c r l") 'cider-repl-reload-dev)
 (global-set-key (kbd "C-c r d") 'cider-repl-in-ns-dev)
 (global-set-key (kbd "C-c r f") 'cider-figwheel-repl)
