@@ -109,6 +109,7 @@
 (live-load-config-file "smartparens-conf.el")
 (live-load-config-file "eval-in-repl-conf.el")
 (live-load-config-file "restclient-conf.el")
+(live-load-config-file "flycheck-conf.el")
 (live-load-config-file "cider-conf.el")
 (live-load-config-file "clojure-conf.el")
 (live-load-config-file "midje-conf.el")

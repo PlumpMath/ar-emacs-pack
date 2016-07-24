@@ -94,3 +94,12 @@
 [submodule "lib/golden-ratio.el"]
 	path = lib/golden-ratio.el
 	url = git@github.com:roman/golden-ratio.el.git
+[submodule "lib/flycheck"]
+	path = lib/flycheck
+	url = git@github.com:flycheck/flycheck.git
+[submodule "lib/flycheck-pos-tip"]
+	path = lib/flycheck-pos-tip
+	url = git@github.com:flycheck/flycheck-pos-tip.git
+[submodule "lib/pos-tip"]
+	path = lib/pos-tip
+	url = git@github.com:syohex/pos-tip.git
