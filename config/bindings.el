@@ -141,8 +141,7 @@
 (global-set-key (kbd "s-M-t") 'projectile-toggle-between-implementation-and-test)
 
 ;; Zeal
-(define-key cider-doc-map (kbd "z") 'zeal-at-point)
-(global-set-key (kbd "C-c C-d z") 'zeal-at-point)
+(global-set-key (kbd "C-c d z") 'zeal-at-point)
 
 ;; Org
 (global-set-key (kbd "C-c l") 'org-store-link)

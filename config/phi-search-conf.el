@@ -10,3 +10,6 @@
 
 (set-face-attribute 'phi-search-match-face nil
                     :background "#194854")
+
+(setq phi-search-limit           10000)
+(setq phi-search-case-sensitive 'guess)

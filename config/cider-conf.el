@@ -13,6 +13,7 @@
 (setq cider-repl-display-help-banner nil)
 (setq cider-connection-message-fn 'cider-random-tip)
 (setq cider-use-tooltips nil)
+(setq cider-prompt-for-symbol nil)
 
 ;; Known hosts
 (setq cider-known-endpoints '(("localhost" "5055") ("localhost" "5088")))
