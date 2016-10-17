@@ -103,3 +103,6 @@
 [submodule "lib/pos-tip"]
 	path = lib/pos-tip
 	url = git@github.com:syohex/pos-tip.git
+[submodule "lib/helm-swoop"]
+	path = lib/helm-swoop
+	url = git@github.com:ShingoFukuyama/helm-swoop.git

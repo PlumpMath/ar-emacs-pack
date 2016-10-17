@@ -140,6 +140,10 @@
 (global-set-key (kbd "s-g") 'helm-projectile-grep)
 (global-set-key (kbd "s-M-t") 'projectile-toggle-between-implementation-and-test)
 
+;; helm
+(global-set-key (kbd "M-i") 'helm-multi-swoop-projectile)
+(global-set-key (kbd "M-I") 'helm-swoop-back-to-last-point)
+
 ;; Zeal
 (global-set-key (kbd "C-c d z") 'zeal-at-point)
 

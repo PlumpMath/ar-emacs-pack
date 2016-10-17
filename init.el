@@ -105,6 +105,7 @@
 (live-load-config-file "helm-conf.el")
 (live-load-config-file "projectile-conf.el")
 (live-load-config-file "helm-everywhere.el")
+(live-load-config-file "helm-swoop.el")
 (live-load-config-file "paredit-conf.el")
 (live-load-config-file "smartparens-conf.el")
 (live-load-config-file "eval-in-repl-conf.el")
