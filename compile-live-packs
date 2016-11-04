@@ -1,0 +1,89 @@
+#!/bin/bash
+#
+# Compiles the submodules that require it.
+#
+# At the moment this has been very quickly (manually) probed by considering and
+# checking all the submodules that have either Makefile or a CMakeLists.txt
+
+usage() { echo -e "Compile the submodules in the Emacs Live packs.\n\nUsage: $0 [--clean]\n" 1>&2; exit 1; }
+pause() { read -n1 -r -p "Press any key to continue..." key; }
+
+if [[ "$1" == "-h" || "$1" == "--help" || $# -gt 1 ]] ; then
+    usage;
+fi
+
+MAKE=$(which make)
+CMAKE=$(which cmake)
+
+PACKS_DIR="$HOME/.live-packs/ar-emacs-pack"
+
+MAKEABLE_DIRS=(
+    "$PACKS_DIR/lib/org-trello"
+    "$PACKS_DIR/lib/tablist"
+    "$PACKS_DIR/lib/helm"
+    "$PACKS_DIR/lib/projectile"
+    "$PACKS_DIR/lib/names"
+    "$PACKS_DIR/lib/emacs-helm-ag"
+    "$PACKS_DIR/lib/flycheck"
+)
+
+CMAKEABLE_DIRS=(
+)
+
+# $PACKS_DIR/lib/emacs-request # only tests and elpa
+# $PACKS_DIR/lib/browse-at-remote # only tests and elpa
+# $PACKS_DIR/lib/smartparens # only tests and elpa
+# $PACKS_DIR/lib/f.el # the config.mk trick does not work, maybe PR to the project?
+
+function compile {
+    # Magit needs these, see here:
+    # https://magit.vc/manual/magit/Installing-from-the-Git-repository.html#Installing-from-the-Git-repository
+    # echo -e "LOAD_PATH = -L $PACKS_DIR/dev/git-pack/vendor/submodules/magit/lisp\nLOAD_PATH += -L $PACKS_DIR/dev/foundation-pack/vendor/submodules/dash\nLOAD_PATH += -L $PACKS_DIR/dev/git-pack/vendor/submodules/with-editor" > "$PACKS_DIR/dev/git-pack/vendor/submodules/magit/config.mk"
+    # # We extend this to git-modes
+    # echo -e "LOAD_PATH = -L $PACKS_DIR/dev/foundation-pack/vendor/submodules/dash" > "$PACKS_DIR/dev/git-pack/vendor/submodules/git-modes/config.mk"
+
+    # # For auto-compile
+    # LOADPATH="-L $PACKS_DIR/dev/foundation-pack/vendor/submodules/dash"
+    # LOADPATH+="-L $PACKS_DIR/dev/foundation-pack/vendor/submodules/packed"
+
+    for dir in ${MAKEABLE_DIRS[@]}; do
+        $MAKE -C $dir
+    done
+
+    for dir in ${CMAKEABLE_DIRS[@]}; do
+        pwd=$(pwd)
+        cd $dir
+        $CMAKE .
+        $MAKE
+        cd $pwd
+    done
+    unset LOADPATH
+}
+
+function clean {
+    rm -fv	$PACKS_DIR/dev/git-pack/vendor/submodules/magit/config.mk
+    rm -fv $PACKS_DIR/dev/git-pack/vendor/submodules/git-modes/config.mk
+    for dir in ${MAKEABLE_DIRS[@]}; do
+        $MAKE -C $dir clean
+    done
+
+    # Better clean for cmake?
+    for dir in ${CMAKEABLE_DIRS[@]}; do
+        pwd=$(pwd)
+        cd $dir
+        rm -vf Makefile cmake_install.cmake CMakeCache.txt
+        rm -Rvf CMakeFiles
+        rm -vf *.elc
+        cd $pwd
+    done
+}
+
+if [[ $# -eq 0 ]] ; then
+    compile
+else
+    if [[ "$1" == "--clean" ]] ; then
+        clean
+    else
+        usage
+    fi
+fi
