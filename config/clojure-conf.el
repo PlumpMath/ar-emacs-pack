@@ -47,3 +47,6 @@
             (flyspell-prog-mode)
             (linum-mode t)
             (git-gutter-mode t)))
+
+(live-add-pack-lib "html-to-hiccup")
+(require 'html-to-hiccup)

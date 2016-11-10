@@ -106,3 +106,6 @@
 [submodule "lib/helm-swoop"]
 	path = lib/helm-swoop
 	url = git@github.com:ShingoFukuyama/helm-swoop.git
+[submodule "lib/html-to-hiccup"]
+	path = lib/html-to-hiccup
+	url = https://github.com/plexus/html-to-hiccup.git
