@@ -8,13 +8,9 @@
 
 ;; Redefining redo/undo
 (defalias 'redo 'undo-tree-redo)
-(define-key clojure-mode-map (kbd "C-c C-z") nil)
-(define-key cider-mode-map (kbd "C-c C-z") nil)
-(global-set-key (kbd "C-z") 'undo-tree-undo)
-(global-set-key (kbd "C-c C-z") 'redo)
 
-;; Remove because bound by clojure already
-(define-key cider-mode-map (kbd "C-M-i") nil)
+(global-set-key (kbd "C-c C-z") 'redo)
+(global-set-key (kbd "C-z") 'undo-tree-undo)
 
 (global-set-key (kbd "C-v") 'cua-paste)
 (global-set-key (kbd "C-c C-o") 'delete-blank-lines)
@@ -72,9 +68,6 @@
 (global-set-key (kbd "C-c m a") 'mc/mark-all-like-this-dwim)
 (global-set-key (kbd "C-c d l") 'duplicate-line)
 (global-set-key (kbd "C-c d x") 'paredit-duplicate-closest-sexp)
- ;; better twice because I often forget
-(global-set-key (kbd "C-c t s") 'clojure-toggle-keyword-string)
-(global-set-key (kbd "C-c t k") 'clojure-toggle-keyword-string)
 
 ;;; phi-search
 (global-set-key (kbd "C-s") 'phi-search)
@@ -86,9 +79,24 @@
 (define-key org-mode-map (kbd "C-h") 'help-command)
 (define-key undo-tree-map (kbd "C-_") 'comment-or-uncomment-region-or-line)
 (define-key undo-tree-map (kbd "C-/") 'comment-or-uncomment-region-or-line)
-(define-key clojure-mode-map (kbd "C-M-\\") 'live-delete-whitespace-except-one)
 (global-set-key (kbd "C-M-.") 'prelude-goto-symbol)
-(define-key cider-mode-map (kbd "C-c M-x") 'cider-eval-sexp-at-point-in-repl)
+
+(eval-after-load 'cider-mode
+  '(progn
+     (define-key cider-mode-map (kbd "C-c C-z") nil)
+     ;; Remove because bound by clojure already
+     (define-key cider-mode-map (kbd "C-M-i") nil)
+     (define-key cider-mode-map (kbd "C-c M-x") 'cider-eval-sexp-at-point-in-repl)))
+
+(eval-after-load 'clojure-mode
+  '(progn
+     (define-key clojure-mode-map (kbd "C-c C-z") nil)
+     (define-key clojure-mode-map (kbd "C-M-\\") 'live-delete-whitespace-except-one)
+     (define-key clojure-mode-map (kbd "C-h") 'html-to-hiccup-convert-region)
+     (define-key clojure-mode-map (kbd "C-h") 'help-command)
+     ;; better twice because I often forget
+     (define-key clojure-mode-map (kbd "C-t C-s") 'clojure-toggle-keyword-string)
+     (define-key clojure-mode-map (kbd "C-t C-k") 'clojure-toggle-keyword-string)))
 
 ;; Rebind Paredit
 (eval-after-load 'paredit
