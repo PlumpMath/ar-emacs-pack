@@ -70,14 +70,16 @@
                     :foreground "red4"
                     :inherit 'error)
 
+;; Have linum-mode in every mode
+(add-hook 'text-mode-hook 'linum-mode)
+(add-hook 'prog-mode-hook 'linum-mode)
+
 ;; git-gutter and linum
 (global-git-gutter-mode t)
 (git-gutter:linum-setup)
 
 (custom-set-variables
  '(git-gutter:update-interval 2))
-
-(add-hook 'emacs-lisp-mode-hook 'linum-mode)
 
 ;; popwin
 (push "*cider-apropos*" popwin:special-display-config)
@@ -136,6 +138,18 @@
 (add-hook 'markdown-mode-hook
           (lambda ()
             (flyspell-mode)))
+
+
+;; From https://www.emacswiki.org/emacs/LineNumbers#toc14
+(defun linum-update-window-scale-fix (win)
+  "fix linum for scaled text"
+  (set-window-margins win
+                      (ceiling (* (if (boundp 'text-scale-mode-step)
+                                      (expt text-scale-mode-step
+                                            text-scale-mode-amount) 1)
+                                  (if (car (window-margins))
+                                      (car (window-margins)) 1)))))
+(advice-add #'linum-update-window :after #'linum-update-window-scale-fix)
 
 ;; Load libs with no config
 (require 'misc)
