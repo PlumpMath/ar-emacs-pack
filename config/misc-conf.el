@@ -5,6 +5,7 @@
 (require 'golden-ratio)
 (golden-ratio-mode 1)
 (setq golden-ratio-auto-scale t)
+(setq golden-ratio-exclude-modes '("ediff-mode"))
 
 (defun ielm-auto-complete ()
   "Enables `auto-complete' support in \\[ielm]."
