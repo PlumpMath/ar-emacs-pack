@@ -109,3 +109,6 @@
 [submodule "lib/html-to-hiccup"]
 	path = lib/html-to-hiccup
 	url = https://github.com/plexus/html-to-hiccup.git
+[submodule "lib/inf-clojure"]
+	path = lib/inf-clojure
+	url = git@github.com:clojure-emacs/inf-clojure.git

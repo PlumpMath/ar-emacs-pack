@@ -5,8 +5,6 @@
 ;; (setq cider-show-error-buffer nil)
 ;; (setq cider-show-error-buffer 'except-in-repl)
 (setq cider-show-error-buffer 'only-in-repl)
-
-(setq nrepl-buffer-name-show-port t)
 (setq cider-stacktrace-fill-column 100)
 (setq cider-repl-history-size 1000)
 (setq cider-prompt-for-project-on-connect nil)
@@ -14,10 +12,13 @@
 (setq cider-connection-message-fn 'cider-random-tip)
 (setq cider-use-tooltips nil)
 (setq cider-prompt-for-symbol nil)
-(setq cljr-magic-requires nil)
 
 ;; Known hosts
 (setq cider-known-endpoints '(("localhost" "5055") ("localhost" "5088")))
+
+;; clj-refactor
+(setq cljr-favor-prefix-notation nil)
+(setq cljr-magic-requires nil)
 
 (add-hook 'cider-repl-mode-hook #'subword-mode)
 (add-hook 'cider-mode-hook #'subword-mode)

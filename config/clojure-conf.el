@@ -37,8 +37,8 @@
 (live-add-pack-lib "clojure-snippets")
 (require 'clojure-snippets)
 
-;; clj-refactor
-(setq cljr-favor-prefix-notation nil)
+;; replz
+(setq nrepl-buffer-name-show-port t)
 
 ;; clojure hooks
 (add-hook 'clojure-mode-hook
@@ -46,7 +46,9 @@
             (yas/minor-mode t)
             (flyspell-prog-mode)
             (linum-mode t)
-            (git-gutter-mode t)))
+            (git-gutter-mode t)
+            (eldoc-mode)
+            (subword-mode)))
 
 (live-add-pack-lib "html-to-hiccup")
 (require 'html-to-hiccup)
