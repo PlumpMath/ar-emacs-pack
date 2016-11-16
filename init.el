@@ -97,9 +97,6 @@
 ;; Magit warnings
 (setq magit-last-seen-setup-instructions "2.1.0")
 (setq magit-auto-revert-mode nil)
-;; Disable vc-git, see
-;; https://emacs.stackexchange.com/questions/7544/locally-added-file-under-the-git-version-control-system
-;; (setq vc-handled-backends ())
 
 ;; Load bindings and configs
 (live-load-config-file "bindings.el")
