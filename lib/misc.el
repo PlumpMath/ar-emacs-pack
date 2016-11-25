@@ -210,6 +210,15 @@
   (interactive)
   (switch-to-buffer "*Messages*"))
 
+;; From http://blog.binchen.org/posts/paste-string-from-clipboard-into-minibuffer-in-emacs.html
+(defun paste-from-x-primary ()
+  (interactive)
+  (shell-command "xsel -o" 1))
+
+(defun paste-from-x-clipboard ()
+  (interactive)
+  (shell-command "xsel -ob" 1))
+
 ;; From https://github.com/halgari/clojure-conj-2013-core.async-examples
 ;; (defun nrepl-eval-sexp-at-point-in-repl ()
 ;;   (interactive)

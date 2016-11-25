@@ -159,3 +159,8 @@
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
+
+;; Minibuffer
+(add-hook 'minibuffer-setup-hook
+          (lambda ()
+            (local-set-key (kbd "C-v") 'paste-from-x-primary)))
