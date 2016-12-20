@@ -24,7 +24,7 @@ MAKEABLE_DIRS=(
     "$PACKS_DIR/lib/projectile"
     "$PACKS_DIR/lib/names"
     "$PACKS_DIR/lib/emacs-helm-ag"
-    "$PACKS_DIR/lib/flycheck"
+    # "$PACKS_DIR/lib/flycheck" # requires make init first
 )
 
 CMAKEABLE_DIRS=(

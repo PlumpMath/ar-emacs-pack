@@ -18,6 +18,10 @@
   (auto-complete-mode 1))
 (add-hook 'ielm-mode-hook 'ielm-auto-complete)
 
+;; Some common vars that I can safely configure
+(put 'projectile-project-compilation-cmd 'safe-local-variable #'stringp)
+(put 'compilation-read-command 'safe-local-variable #'string-or-null-p)
+
 ;; (live-add-pack-lib "emacs-color-themes")
 ;; (require 'emacs-color-themes)
 
