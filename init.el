@@ -87,8 +87,9 @@
 (push "*cider-description*" popwin:special-display-config)
 (push "*cider-error*" popwin:special-display-config)
 (push "*cider-doc*" popwin:special-display-config)
-(push '("*cider-compilation*" :noselect t) popwin:special-display-config)
-(push '("*git-gutter:diff*" :noselect t) popwin:special-display-config)
+(push '("*cider-compilation*" :noselect t :tail t :dedicated t) popwin:special-display-config)
+(push '("*compilation*" :noselect t :tail t :dedicated t) popwin:special-display-config)
+(push '("*git-gutter:diff*" :noselect t :dedicated t) popwin:special-display-config)
 (push '("*Geiser dbg*" :noselect t) popwin:special-display-config)
 ;; (push '(sldb-mode :stick t) popwin:special-display-config)
 ;; (push 'cider-repl-mode popwin:special-display-config)
@@ -137,7 +138,6 @@
           (lambda ()
             (flyspell-mode)))
 
-
 ;; From https://www.emacswiki.org/emacs/LineNumbers#toc14
 (defun linum-update-window-scale-fix (win)
   "fix linum for scaled text"
@@ -148,6 +148,15 @@
                                   (if (car (window-margins))
                                       (car (window-margins)) 1)))))
 (advice-add #'linum-update-window :after #'linum-update-window-scale-fix)
+
+;; Add ansi coloring to some buffer
+(ignore-errors
+  (require 'ansi-color)
+  (defun my-colorize-compilation-buffer ()
+    (when (eq major-mode 'compilation-mode)
+      (ansi-color-apply-on-region compilation-filter-start (point-max))))
+  (add-hook 'compilation-filter-hook 'my-colorize-compilation-buffer))
+;; (add-hook 'compilation-filter-hook 'ansi-color-for-comint-mode-on)
 
 ;; Load libs with no config
 (require 'misc)
