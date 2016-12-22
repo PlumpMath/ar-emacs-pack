@@ -22,8 +22,19 @@
 (put 'projectile-project-compilation-cmd 'safe-local-variable #'stringp)
 (put 'compilation-read-command 'safe-local-variable #'string-or-null-p)
 
+;; Aliases in shell-command
+;; http://stackoverflow.com/questions/10946219/emacs-compilation-mode-wont-see-bash-alias#10958134
+;; (setq shell-file-name "bash")
+;; (setq shell-command-switch "-ic")
+
+
 ;; (live-add-pack-lib "emacs-color-themes")
 ;; (require 'emacs-color-themes)
 
 ;; (load-file (concat (live-pack-lib-dir) "emacs-color-themes/themes/" "hickey-theme.el"))
 ;; (load-file (concat (live-pack-lib-dir) "zenburn-theme.el"))
+
+(live-add-pack-lib "exec-path-from-shell")
+(require 'exec-path-from-shell)
+
+(exec-path-from-shell-initialize)

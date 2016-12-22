@@ -112,3 +112,6 @@
 [submodule "lib/inf-clojure"]
 	path = lib/inf-clojure
 	url = git@github.com:clojure-emacs/inf-clojure.git
+[submodule "lib/exec-path-from-shell"]
+	path = lib/exec-path-from-shell
+	url = git@github.com:purcell/exec-path-from-shell.git
