@@ -43,7 +43,6 @@
 
 ;;; clj-refactor - C-c r
 (cljr-add-keybindings-with-prefix "C-c r")
-(global-set-key (kbd "C-M-[") 'cljr-cycle-coll)
 (global-set-key (kbd "C-M-]") 'cljr-promote-function)
 
 ;;; C-c w custom group for windows
