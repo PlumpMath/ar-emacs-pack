@@ -156,7 +156,6 @@
     (when (eq major-mode 'compilation-mode)
       (ansi-color-apply-on-region compilation-filter-start (point-max))))
   (add-hook 'compilation-filter-hook 'my-colorize-compilation-buffer))
-;; (add-hook 'compilation-filter-hook 'ansi-color-for-comint-mode-on)
 
 ;; Load libs with no config
 (require 'misc)
