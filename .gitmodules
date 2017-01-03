@@ -112,6 +112,30 @@
 [submodule "lib/inf-clojure"]
 	path = lib/inf-clojure
 	url = git@github.com:clojure-emacs/inf-clojure.git
+[submodule "lib/emacs-scala-mode"]
+	path = lib/emacs-scala-mode
+	url = git@github.com:ensime/emacs-scala-mode.git
+[submodule "lib/ensime-emacs"]
+	path = lib/ensime-emacs
+	url = git@github.com:ensime/ensime-emacs.git
+[submodule "lib/ensime-sbt"]
+	path = lib/ensime-sbt
+	url = git@github.com:ensime/ensime-sbt.git
+[submodule "lib/emacs-sbt-mode"]
+	path = lib/emacs-sbt-mode
+	url = git@github.com:ensime/emacs-sbt-mode.git
+[submodule "lib/jdee"]
+	path = lib/jdee
+	url = git@github.com:jdee-emacs/jdee.git
+[submodule "lib/emacs-memoize"]
+	path = lib/emacs-memoize
+	url = git@github.com:skeeto/emacs-memoize.git
+[submodule "lib/emacs-load-relative"]
+	path = lib/emacs-load-relative
+	url = git@github.com:rocky/emacs-load-relative.git
 [submodule "lib/exec-path-from-shell"]
 	path = lib/exec-path-from-shell
 	url = git@github.com:purcell/exec-path-from-shell.git
+[submodule "lib/helm-cider"]
+	path = lib/helm-cider
+	url = git@github.com:clojure-emacs/helm-cider.git
