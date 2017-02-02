@@ -32,7 +32,8 @@
   (read-eval-call-test 'defun)
   (alet 'defun)
   (mlet 'defun)
-  (trace-forms (lambda (_ _) 0)))
+  (trace-forms (lambda (_ _) 0))
+  (fdef 'defun))
 
 (live-add-pack-lib "clojure-snippets")
 (require 'clojure-snippets)
