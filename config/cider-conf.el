@@ -126,3 +126,7 @@
     (push `(cider-mode . ,newmap) minor-mode-overriding-map-alist)))
 
 (add-hook 'cider-mode-hook 'custom-cider-mode-hook)
+
+(live-add-pack-lib "helm-cider")
+(require 'helm-cider)
+(helm-cider-mode 1)
