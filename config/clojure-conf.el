@@ -32,7 +32,8 @@
   (read-eval-call-test 'defun)
   (alet 'defun)
   (mlet 'defun)
-  (trace-forms (lambda (_ _) 0))
+  (eval-in 'defun)               ;; classlojure
+  (trace-forms (lambda (_ _) 0)) ;; re-frame macros
   (fdef 'defun))
 
 (live-add-pack-lib "clojure-snippets")

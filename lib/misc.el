@@ -41,8 +41,7 @@
     (message "Initializing x windows system.")
     (x-initialize-window-system)
     (when (not x-display-name) (setq x-display-name (getenv "DISPLAY")))
-    (select-frame (make-frame-on-display x-display-name '((window-system . x))))
-  )
+    (select-frame (make-frame-on-display x-display-name '((window-system . x)))))
   (let ((last-nonmenu-event nil)(window-system "x"))(save-buffer)))
 
 (defun duplicate-line (arg)

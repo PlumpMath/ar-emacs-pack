@@ -162,4 +162,4 @@
 ;; Minibuffer
 (add-hook 'minibuffer-setup-hook
           (lambda ()
-            (local-set-key (kbd "C-v") 'paste-from-x-primary)))
+            (local-set-key (kbd "C-v") 'clipboard-yank)))

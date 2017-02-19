@@ -2,8 +2,9 @@
 ;; AR pack init file
 ;;
 
-;;; Fonts
+;;; Theme
 (set-face-attribute 'default nil :height 117)
+(color-theme-zenburn)
 
 (setq make-backup-files nil) ;; stop creating backup~ files
 (setq auto-save-default nil) ;; stop creating #autosave# files
@@ -89,7 +90,7 @@
 (push "*cider-doc*" popwin:special-display-config)
 (push '("*cider-compilation*" :noselect t :tail t :dedicated t) popwin:special-display-config)
 (push '("*compilation*" :noselect t :tail t :dedicated t) popwin:special-display-config)
-(push '("*git-gutter:diff*" :noselect t :dedicated t) popwin:special-display-config)
+(push "*git-gutter:diff*" popwin:special-display-config)
 (push '("*Geiser dbg*" :noselect t) popwin:special-display-config)
 ;; (push '(sldb-mode :stick t) popwin:special-display-config)
 ;; (push 'cider-repl-mode popwin:special-display-config)

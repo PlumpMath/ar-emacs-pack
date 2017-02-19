@@ -23,3 +23,6 @@
      (add-hook 'html-mode-hook (lambda ()
                                  (tagedit-mode 1)
                                  (tagedit-add-experimental-features)))))
+
+(font-lock-add-keywords 'nxml-mode
+                        '((live-fontify-hex-colors)))
