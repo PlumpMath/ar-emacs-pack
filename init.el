@@ -90,11 +90,9 @@
 (push "*cider-doc*" popwin:special-display-config)
 (push '("*cider-compilation*" :noselect t :tail t :dedicated t) popwin:special-display-config)
 (push '("*compilation*" :noselect t :tail t :dedicated t) popwin:special-display-config)
-(push "*git-gutter:diff*" popwin:special-display-config)
+(push '("*git-gutter:diff*" :noselect t) popwin:special-display-config)
 (push '("*Geiser dbg*" :noselect t) popwin:special-display-config)
-;; (push '(sldb-mode :stick t) popwin:special-display-config)
-;; (push 'cider-repl-mode popwin:special-display-config)
-;; (push 'cider-connection-list-mode popwin:special-display-config)
+(push '(" *undo-tree*" :width 0.3 :position right) popwin:special-display-config)
 
 ;; Magit warnings
 (setq magit-last-seen-setup-instructions "2.1.0")
