@@ -84,8 +84,7 @@
   '(progn
      (define-key cider-mode-map (kbd "C-c C-z") nil)
      ;; Remove because bound by clojure already
-     (define-key cider-mode-map (kbd "C-M-i") nil)
-     (define-key cider-mode-map (kbd "C-c M-x") 'cider-eval-sexp-at-point-in-repl)))
+     (define-key cider-mode-map (kbd "C-M-i") nil)))
 
 (eval-after-load 'clojure-mode
   '(progn

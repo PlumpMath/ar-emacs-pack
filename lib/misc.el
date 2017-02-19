@@ -1,5 +1,7 @@
 ;;; misc.el ---Set of useful functions
 
+(require 'dash)
+
 ;; From: http://stackoverflow.com/questions/20041904/eclipse-like-line-commenting-in-emacs#answer-20064658
 (defun comment-or-uncomment-region-or-line ()
   "Comments or uncomments the region or the current line if there's no active region."
@@ -209,38 +211,30 @@
   (interactive)
   (switch-to-buffer "*Messages*"))
 
-;; From http://blog.binchen.org/posts/paste-string-from-clipboard-into-minibuffer-in-emacs.html
-(defun paste-from-x-primary ()
-  (interactive)
-  (shell-command "xsel -o" 1))
+(defun cider--get-repl-buffer ()
+  (-when-let (repl-buffers (cider-repl-buffers))
+    (if (= (length repl-buffers) 1)
+        (car repl-buffers)
+      (completing-read "Choose REPL buffer: "
+                       (mapcar #'buffer-name repl-buffers)
+                       nil t))))
 
-(defun paste-from-x-clipboard ()
-  (interactive)
-  (shell-command "xsel -ob" 1))
+(defun cider--eval-bindings (bindings)
+  "Sends a (def bound-name expr) form to the cider repl for each
+binding in bindings."
+  (let ((bound-name (pop bindings))
+        (init-expr (pop bindings)))
+    (when bound-name
+      (let ((form (concat "(def " bound-name " " init-expr ")")))
+        (set-buffer (cider--get-repl-buffer))
+        (insert form)
+        (cider-repl-return)
+        (cider--eval-bindings bindings)))))
 
-;; From https://github.com/halgari/clojure-conj-2013-core.async-examples
-;; (defun nrepl-eval-sexp-at-point-in-repl ()
-;;   (interactive)
-;;   (let ((form (nrepl-expression-at-point)))
-;;     ;; Strip excess whitespace
-;;     (while (string-match "\\`\s+\\|\n+\\'" form)
-;;       (setq form (replace-match "" t t form)))
-;;     (set-buffer (nrepl-find-or-create-repl-buffer))
-;;     (goto-char (point-max))
-;;     (insert form)
-;;     (nrepl-return)))
-
-;; If you are using CIDER below is the equivalent.
-(defun cider-eval-sexp-at-point-in-repl ()
+(defun cider-eval-all-let-bindings ()
   (interactive)
-  (let ((form (cider-sexp-at-point)))
-    ;; Strip excess whitespace
-    (while (string-match "\\`\s+\\|\n+\\'" form)
-      (setq form (replace-match "" t t form)))
-    (set-buffer (cider-get-repl-buffer))
-    (goto-char (point-max))
-    (insert form)
-    (cider-repl-return)))
+  (when (cider--get-repl-buffer)
+    (cider--eval-bindings (clojure--read-let-bindings))))
 
 ;; If you are using Cask for your Emacs configuration, add this to your ~/.emacs.d/init.el file:
 ;; (defun cask-init ()
