@@ -106,7 +106,9 @@
      (define-key paredit-mode-map (kbd "M-<up>") 'live-paredit-previous-top-level-form)
      (define-key paredit-mode-map (kbd "M-<down>") 'live-paredit-next-top-level-form)
      (define-key paredit-mode-map (kbd "M-SPC ") 'live-paredit-tidy-trailing-parens)
-     (define-key paredit-mode-map (kbd "C-M-/") 'clju-toggle-ignore-form)))
+     (define-key paredit-mode-map (kbd "C-M-/") 'clju-toggle-ignore-form)
+     (define-key paredit-mode-map (kbd "C-M-f") 'paredit-forward)
+     (define-key paredit-mode-map (kbd "C-M-b") 'paredit-backward)))
 
 ;; Rebind Smartparens
 ;; Also check
