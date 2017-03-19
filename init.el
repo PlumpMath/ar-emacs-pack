@@ -125,17 +125,14 @@
 (live-load-config-file "misc-conf.el")
 
 ;; flyspell
-(add-hook 'git-commit-mode-hook
-          (lambda ()
-            (flyspell-mode)))
+(add-hook 'git-commit-mode-hook (lambda ()
+                                  (flyspell-mode)))
 
-(add-hook 'git-rebase-mode-hook
-          (lambda ()
-            (flyspell-mode)))
+(add-hook 'git-rebase-mode-hook (lambda ()
+                                  (flyspell-mode)))
 
-(add-hook 'markdown-mode-hook
-          (lambda ()
-            (flyspell-mode)))
+(add-hook 'markdown-mode-hook (lambda ()
+                                (flyspell-mode)))
 
 ;; From https://www.emacswiki.org/emacs/LineNumbers#toc14
 (defun linum-update-window-scale-fix (win)
