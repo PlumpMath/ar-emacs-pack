@@ -320,6 +320,17 @@ binding in bindings."
       (ansi-color-apply-on-region compilation-filter-start (point-max))))
   (add-hook 'compilation-filter-hook 'my-colorize-compilation-buffer))
 
+(defun inf-clojure-lumo-filter-setup ()
+  (add-hook 'comint-output-filter-functions 'comint-strip-ctrl-m))
+
+(defun misc-paredit-first-buffer-form (&optional arg)
+  (interactive "P")
+  (if current-prefix-arg
+      (progn
+        (goto-char (point-min))
+        (paredit-forward))
+    (goto-char (point-min))))
+
 (provide 'misc)
 
 ;;; misc.el ends here

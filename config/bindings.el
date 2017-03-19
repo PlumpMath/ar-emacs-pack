@@ -108,7 +108,8 @@
      (define-key paredit-mode-map (kbd "M-SPC ") 'live-paredit-tidy-trailing-parens)
      (define-key paredit-mode-map (kbd "C-M-/") 'clju-toggle-ignore-form)
      (define-key paredit-mode-map (kbd "C-M-f") 'paredit-forward)
-     (define-key paredit-mode-map (kbd "C-M-b") 'paredit-backward)))
+     (define-key paredit-mode-map (kbd "C-M-b") 'paredit-backward)
+     (define-key paredit-mode-map (kbd "M-<") 'misc-paredit-first-buffer-form)))
 
 ;; Rebind Smartparens
 ;; Also check

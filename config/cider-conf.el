@@ -1,5 +1,3 @@
-(require 'cider-grimoire)
-(require 'cider-test)
 (require 'eval-in-repl-cider)
 
 ;; (setq cider-show-error-buffer nil)
@@ -12,6 +10,7 @@
 (setq cider-connection-message-fn 'cider-random-tip)
 (setq cider-use-tooltips nil)
 (setq cider-prompt-for-symbol nil)
+(setq cider-auto-mode nil) ;; I want to use inf-clojure as well
 
 ;; Known hosts
 (setq cider-known-endpoints '(("localhost" "5055") ("localhost" "5088")))
